@@ -7,3 +7,9 @@ ExamineIndexes/
 
 # Ignore Umbraco content cache file
 umbraco.config
+packages/
+uTube.Web/bin/
+uTube.Web/obj/
+uTube/obj/Debug/TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs
+uTube/obj/
+uTube/bin/

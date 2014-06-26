@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "uTube.Web", "uTube.Web\uTube.Web.csproj", "{E9033DE7-18D4-4B09-8E75-B658FD7F19AE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "uTube", "uTube\uTube.csproj", "{F796BA67-B419-488D-B660-459E8CCAC47A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E9033DE7-18D4-4B09-8E75-B658FD7F19AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9033DE7-18D4-4B09-8E75-B658FD7F19AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9033DE7-18D4-4B09-8E75-B658FD7F19AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9033DE7-18D4-4B09-8E75-B658FD7F19AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F796BA67-B419-488D-B660-459E8CCAC47A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F796BA67-B419-488D-B660-459E8CCAC47A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F796BA67-B419-488D-B660-459E8CCAC47A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F796BA67-B419-488D-B660-459E8CCAC47A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

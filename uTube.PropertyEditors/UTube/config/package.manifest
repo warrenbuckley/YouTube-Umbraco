@@ -1,0 +1,29 @@
+{
+  "propertyEditors": [
+    {
+      "name": "uTube",
+      "alias": "UTube",
+      "editor": {
+        "valueType": "JSON",
+        "view": "~/App_Plugins/UTube/views/u.tube.html"
+      },
+      "prevalues": {
+        "fields": [
+          {
+            "description": "This is an example prevalue",
+            "key": "examplePreValue",
+            "label": "Example PreValue",
+            "view": "textstring"
+          }
+        ]
+      }
+    }
+  ],
+  "css": [
+    "~/App_Plugins/UTube/css/u.tube.css"
+  ],
+  "javascript": [
+    "~/App_Plugins/UTube/js/u.tube.js"
+  ]
+}
+

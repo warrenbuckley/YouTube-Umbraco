@@ -1,0 +1,29 @@
+﻿{
+  "propertyEditors": [
+    {
+      "name": "YouTube Picker",
+      "alias": "uTube",
+      "editor": {
+        "valueType": "JSON",
+        "view": "~/App_Plugins/uTube/views/propertyEditors/uTube.html"
+      },
+      "prevalues": {
+        "fields": [
+          {
+            "description": "This is an example prevalue",
+            "key": "examplePreValue",
+            "label": "Example PreValue",
+            "view": "textstring"
+          }
+        ]
+      }
+    }
+  ],
+  "css": [
+    "~/App_Plugins/uTube/css/uTube.css"
+  ],
+  "javascript": [
+    "~/App_Plugins/uTube/js/uTube.js"
+  ]
+}
+
