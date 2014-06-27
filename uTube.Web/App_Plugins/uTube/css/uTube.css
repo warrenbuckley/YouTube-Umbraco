@@ -1,0 +1,30 @@
+﻿.uTubeChannel .videos .span4 {
+  padding: 2px; }
+.uTubeChannel .videos a {
+  padding: 3px;
+  border: 1px solid transparent;
+  display: block; }
+  .uTubeChannel .videos a:hover {
+    border: 1px solid #aaa; }
+  .uTubeChannel .videos a.selected {
+    border: 1px solid #53a93f;
+    position: relative; }
+    .uTubeChannel .videos a.selected:before {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      background: #53a93f;
+      height: 25px;
+      width: 25px;
+      content: '\e085';
+      font-family: icomoon;
+      color: white;
+      -webkit-font-smoothing: antialiased;
+      font-style: normal;
+      font-weight: normal; }
+    .uTubeChannel .videos a.selected + h5 {
+      color: #53a93f; }
+.uTubeChannel .videos img {
+  max-width: 100%; }
+
+/*# sourceMappingURL=uTube.css.map */

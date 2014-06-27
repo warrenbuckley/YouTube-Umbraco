@@ -1,18 +1,18 @@
 ﻿{
   "propertyEditors": [
     {
-      "name": "YouTube Picker",
-      "alias": "uTube",
+      "name": "YouTube Picker for Channel",
+      "alias": "uTube.channel",
       "editor": {
         "valueType": "JSON",
-        "view": "~/App_Plugins/uTube/views/propertyEditors/uTube.html"
+        "view": "~/App_Plugins/uTube/views/propertyEditors/uTube.channel.html"
       },
       "prevalues": {
         "fields": [
           {
-            "description": "This is an example prevalue",
-            "key": "examplePreValue",
-            "label": "Example PreValue",
+            "description": "Enter the unique Channel ID to display videos only for that channel",
+            "key": "channelId",
+            "label": "Channel ID",
             "view": "textstring"
           }
         ]
@@ -23,7 +23,7 @@
     "~/App_Plugins/uTube/css/uTube.css"
   ],
   "javascript": [
-    "~/App_Plugins/uTube/js/uTube.js"
+    "~/App_Plugins/uTube/js/controllers/uTube.channel.controller.js"
   ]
 }
 

@@ -233,6 +233,11 @@
     <Content Include="config\applications.config" />
     <Content Include="config\404handlers.config" />
     <Content Include="App_Plugins\uTube\package.manifest" />
+    <Content Include="App_Plugins\uTube\js\controllers\uTube.channel.controller.js" />
+    <Content Include="App_Plugins\uTube\css\uTube.scss" />
+    <Content Include="App_Plugins\uTube\css\uTube.css.map">
+      <DependentUpon>uTube.css</DependentUpon>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -243,7 +248,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Plugins\dummy.txt" />
-    <Content Include="App_Plugins\uTube\views\propertyEditors\uTube.html" />
+    <Content Include="App_Plugins\uTube\css\uTube.css">
+      <DependentUpon>uTube.scss</DependentUpon>
+    </Content>
+    <Content Include="App_Plugins\uTube\views\propertyEditors\uTube.channel.html" />
     <Content Include="css\dummy.txt" />
     <Content Include="default.aspx" />
     <Content Include="Global.asax" />
@@ -256,10 +264,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Plugins\uTube\css\" />
-    <Folder Include="App_Plugins\uTube\js\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\uTube\uTube.csproj">
       <Project>{f796ba67-b419-488d-b660-459e8ccac47a}</Project>
