@@ -23,7 +23,8 @@
     "~/App_Plugins/uTube/css/uTube.css"
   ],
   "javascript": [
-    "~/App_Plugins/uTube/js/controllers/uTube.channel.controller.js"
+    "~/App_Plugins/uTube/js/controllers/uTube.channel.controller.js",
+    "~/App_Plugins/uTube/js/resources/uTube.resources.js"
   ]
 }
 

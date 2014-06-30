@@ -26,19 +26,27 @@ namespace uTube.Controllers
             return popularVideos;
         }
 
-        //TODO: Change to POST not GET
-        //http://localhost:50533/umbraco/backoffice/uTube/YouTubeApi/VideosForChannel?pageToken=&channelId=UC-lHJZR3Gqxm24_Vd_AJ5Yw&orderBy=date
-        [HttpGet]
-        public SearchListResponse VideosForChannel(string pageToken, string channelId, string orderBy)
+        //http://localhost:50533/umbraco/backoffice/uTube/YouTubeApi/VideosForChannel
+        [HttpPost]
+        public SearchListResponse VideosForChannel(ApiModel model)
         {
             //Convert string orderby to the enum that we expect
+            
             SearchResource.ListRequest.OrderEnum order;
-            Enum.TryParse(orderBy, out order);
+            Enum.TryParse(model.OrderBy, out order);
 
-            //Go & get tthe videos
-            var channelVideos = YouTube.GetVideosForChannel(pageToken, channelId, order);
+            //Go & get the videos
+            var channelVideos = YouTube.GetVideosForChannel(model.PageToken, model.ChannelId, order);
 
+            //Return the response from YouTube API
             return channelVideos;
         }
+    }
+
+    public class ApiModel
+    {
+        public string PageToken { get; set; }
+        public string ChannelId { get; set; }
+        public string OrderBy { get; set; }
     }
 }

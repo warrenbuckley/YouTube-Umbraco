@@ -11,8 +11,7 @@ namespace uTube
         //CONSTANTS
         private const string _ApiKey            = "AIzaSyAgXB3nYk3f00eXZd0FGsUjJySf2Fnp7KA";
         private const string _ApplicationName   = "uTube for Umbraco";
-        private const string _channelId         = "UC-lHJZR3Gqxm24_Vd_AJ5Yw"; //"UCm9bQ9_bbPko6YbZrK-IS6A";
-        private const int _noPerPage            = 6;
+        private const int _noPerPage            = 3;
 
         /// <summary>
         /// Gets the YouTube Service that we use for all requests
@@ -39,9 +38,9 @@ namespace uTube
             var videoRequest        = youTube.Search.List("snippet");
             videoRequest.ChannelId  = channelId;                        //Get videos for Channel only
             videoRequest.Order      = orderBy;                          //Order by the view count/date (ENum Passed in)
-            videoRequest.MaxResults = _noPerPage;                       //6 per page
+            videoRequest.MaxResults = _noPerPage;                       //3 per page
             videoRequest.Type       = "video";                          //Only get videos, as searches can return results for channel & other types
-            videoRequest.PageToken  = pageToken;                         //If more than 6 videos, we can request more videos using a page token (previous & next)
+            videoRequest.PageToken  = pageToken;                        //If more than 3 videos, we can request more videos using a page token (previous & next)
 
             //Perform request
             var videoResponse = videoRequest.Execute();

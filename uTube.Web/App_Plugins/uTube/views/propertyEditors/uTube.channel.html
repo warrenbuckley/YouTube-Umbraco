@@ -1,56 +1,45 @@
-﻿<div class="uTubeChannel" ng-controller="">
+﻿<div class="uTubeChannel" ng-controller="uTube.channel.controller">
 
     <!-- Search -->
     <div>
         <input type="text" name="textbox" class="umb-editor umb-textstring textstring" placeholder="Search for a video in this channel" />
         <button class="btn"><i class="icon icon-search"></i> Search</button>
     </div>
-
-    <hr/>
+    
+    <hr />
 
     <!-- Video Results -->
-    <div class="row-fluid videos">
-
-        <div class="span4">
-            <a href="" class="selected">
-                <img src="https://i.ytimg.com/vi/uZpUnmuOISQ/mqdefault.jpg" />
+    <div class="row-fluid videos" ng-show="hasVideos">
+        <div class="span4" ng-repeat="video in videos.items">
+            <a href="#" prevent-default ng-click="toggleVideo(video)" ng-class="{selected: isInArray(video.id.videoId)}">
+                <img ng-src="{{video.snippet.thumbnails.medium.url}}" />
             </a>
-            <h5>uHangout EP031 - Pete Duncanson</h5>
-        </div>
-
-        <div class="span4">
-            <a href="">
-                <img src="https://i.ytimg.com/vi/uZpUnmuOISQ/mqdefault.jpg" />
-            </a>
-            <h5>uHangout EP031 - Pete Duncanson</h5>
-        </div>
-
-        <div class="span4">
-            <a href="">
-                <img src="https://i.ytimg.com/vi/uZpUnmuOISQ/mqdefault.jpg" />
-            </a>
-            <h5>uHangout EP031 - Pete Duncanson</h5>
+            <h5>{{ video.snippet.title }}</h5>
         </div>
     </div>
-    
+
     <!-- Pagination (Next & Previous only) -->
-    <div class="">
-        <ul class="pager">
-            <li class="previous disabled">
-                <a href="#">&larr; Previous</a>
-            </li>
-            <li class="next">
-                <a href="#">Next &rarr;</a>
-            </li>
-        </ul>
-    </div>
+    <ul class="pager">
+        <li ng-class="{disabled: videos.prevPageToken == null}" class="previous">
+            <a href="#" prevent-default ng-click="pageVideos(videos.prevPageToken)">&larr; Previous</a>
+        </li>
+        <li ng-class="{disabled: videos.nextPageToken == null}" class="next">
+            <a href="#" prevent-default ng-click="pageVideos(videos.nextPageToken)">Next &rarr;</a>
+        </li>
+    </ul>
 
     <!-- Saved Videos -->
     <div>
         <h4>Selected Videos</h4>
-        <ul>
-            <li>Blah x</li>
-            <li>Blah y</li>
+       
+        <ul class="unstyled" ui-sortable ng-model="model.value">
+            <li ng-repeat="selectedItem in model.value">
+                <i class="icon icon-navigation handle"></i>
+                <a href="#" prevent-default ng-click="removeVideo($index)"><i class="icon icon-delete red"></i></a>
+                {{selectedItem.title}}
+            </li>
         </ul>
+
+        {{ model.value | json }}
     </div>
 </div>
