@@ -26,6 +26,7 @@
                 var videoListResponse = YouTube.GetVideo(string.Join(", ", selectedVideos));
                 foreach (var video in videoListResponse.Items)
                 {
+                    video.Player.EmbedHtml = video.Player.EmbedHtml.Replace("/>", "></iframe>");
                     this._selectedVideos.Add(video);
                 }
             }

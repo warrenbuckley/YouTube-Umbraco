@@ -31,14 +31,14 @@
                             @{
                                 foreach (var dynamicVideo in CurrentPage.video)
                                 {
-                                    <div>@Html.Raw(dynamicVideo.Player.EmbedHtml.Replace("/>", "></iframe>"))</div>
+                                    <div>@Html.Raw(dynamicVideo.Player.EmbedHtml)</div>
                                 }
                             }
                             
                             @{
                                 foreach (var typedVideo in Model.Content.GetPropertyValue<uTube>("video"))
                                 {
-                                    <div>@Html.Raw(typedVideo.Player.EmbedHtml.Replace("/>", "></iframe>"))</div>
+                                    <div>@Html.Raw(typedVideo.Player.EmbedHtml)</div>
                                 }
                             }
                         </section>                           
