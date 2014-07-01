@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace uTube
+﻿namespace uTube
 {
+    using System.Collections.Generic;
+    using System.Linq;
+
     using Newtonsoft.Json;
 
     using Umbraco.Core.Models.PublishedContent;
