@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Runtime.Serialization;
-
-namespace uTube.Models
+﻿namespace uTube.Models
 {
+    using System.Runtime.Serialization;
+
+    /// <summary>
+    /// View Model for selected videos
+    /// </summary>
     public class SelectedVideo
     {
         [DataMember(Name = "id")]

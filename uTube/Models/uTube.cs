@@ -1,16 +1,17 @@
 ﻿namespace uTube.Models
 {
     using System.Collections.Generic;
+    using Google.Apis.YouTube.v3.Data;
 
     /// <summary>
     /// The uTube return model
     /// </summary>
-    public class uTube : IEnumerable<Google.Apis.YouTube.v3.Data.Video>
+    public class uTube : IEnumerable<Video>
     {
         /// <summary>
         /// The selected videos.
         /// </summary>
-        private readonly List<Google.Apis.YouTube.v3.Data.Video> _selectedVideos = new List<Google.Apis.YouTube.v3.Data.Video>();
+        private readonly List<Video> _selectedVideos = new List<Video>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="uTube"/> class.
@@ -36,7 +37,7 @@
         /// <returns>
         /// The <see cref="IEnumerator"/>.
         /// </returns>
-        public IEnumerator<Google.Apis.YouTube.v3.Data.Video> GetEnumerator()
+        public IEnumerator<Video> GetEnumerator()
         {
             return this._selectedVideos.GetEnumerator();
         }

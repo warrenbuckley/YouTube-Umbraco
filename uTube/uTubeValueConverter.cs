@@ -8,9 +8,7 @@ namespace uTube
 {
     using Newtonsoft.Json;
 
-    using Umbraco.Core;
     using Umbraco.Core.Models.PublishedContent;
-    using Umbraco.Core.Persistence.Migrations.Upgrades.TargetVersionSixTwoZero;
     using Umbraco.Core.PropertyEditors;
     using Umbraco.Web;
 
@@ -63,7 +61,7 @@ namespace uTube
                 }
             }
 
-            return null;
+            return new string[0];
         }
 
         /// <summary>
