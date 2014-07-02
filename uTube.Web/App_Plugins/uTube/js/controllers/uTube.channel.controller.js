@@ -12,7 +12,7 @@
     $scope.model.value = $scope.model.value ? $scope.model.value : [];
 
 
-    //Try & get videos for grid
+    //Try & get videos for grid on Page Load
     uTubeResource.getChannelVideos($scope.model.config.channelId, $scope.model.config.orderBy, null, null).then(function(response) {
 
         //Check we have items back from YouTube
@@ -49,20 +49,27 @@
         }
     };
 
-
-    $scope.pageVideos = function(pagedToken) {
-        console.log(pagedToken);
-
-        //Check we have page token - may be beginning or end of collection that user has clicked on
+    $scope.getPagedVideos = function(pagedToken) {
+        
+        //Check we have a paged token
+        //May be at beginning or end of list
+        //If so don't do anything
         if (pagedToken == null) {
             return;
         }
 
+        //Call getVideos() with our page token
+        this.getVideos(pagedToken);
+
+    }
+
+    $scope.getVideos = function (pagedToken) {
+       
         //Set Has Videos to false - until we get some back from API call
         $scope.hasVideos = false;
 
         //Do new request to API
-        uTubeResource.getChannelVideos($scope.model.config.channelId, $scope.model.config.orderBy, null, pagedToken).then(function (response) {
+        uTubeResource.getChannelVideos($scope.model.config.channelId, $scope.model.config.orderBy, $scope.searchQuery, pagedToken).then(function (response) {
 
             //Check we have items back from YouTube
             if (response.data.items.length > 0) {
@@ -96,28 +103,6 @@
             //Could not find it in the array - was -1
             return false;
         }
-    };
-
-    $scope.search = function() {
-        console.log($scope.searchQuery);
-
-        //Set Has Videos to false - until we get some back from API call
-        $scope.hasVideos = false;
-
-        //Do new request to API
-        uTubeResource.getChannelVideos($scope.model.config.channelId, $scope.model.config.orderBy, $scope.searchQuery, pagedToken).then(function (response) {
-
-            //Check we have items back from YouTube
-            if (response.data.items.length > 0) {
-
-                //Videos
-                $scope.videos = response.data;
-
-                //Now we can show the grid of videos
-                $scope.hasVideos = true;
-            }
-
-        });
     };
 
 

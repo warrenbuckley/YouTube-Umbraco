@@ -7,7 +7,7 @@
     return {
 
         getChannelVideos: function (channelId, orderBy, searchQuery, pageToken) {
-            return $http.post(apiUrl + "VideosForChannel", { pageToken: pageToken, channelId: channelId, orderBy: orderBy });
+            return $http.post(apiUrl + "VideosForChannel", { pageToken: pageToken, channelId: channelId, searchQuery: searchQuery, orderBy: orderBy });
         }
 
     };

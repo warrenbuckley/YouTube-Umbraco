@@ -3,11 +3,16 @@
     <!-- Search -->
     <div>
         <input type="text" name="textbox" class="umb-editor umb-textstring textstring" placeholder="Search for a video in this channel" ng-model="searchQuery" />
-        <button class="btn" prevent-default ng-click="search()"><i class="icon icon-search"></i> Search</button>
+        <button class="btn" prevent-default ng-click="getVideos('')"><i class="icon icon-search"></i> Search</button>
     </div>
     
     <hr />
 
+    <!-- Loading Message - whilst getting videos -->
+    <div ng-show="!hasVideos">
+        <h2>Loading</h2>
+    </div>
+    
     <!-- Video Results -->
     <div class="row-fluid videos" ng-show="hasVideos">
         <div class="span4" ng-repeat="video in videos.items">
@@ -21,10 +26,10 @@
     <!-- Pagination (Next & Previous only) -->
     <ul class="pager">
         <li ng-class="{disabled: videos.prevPageToken == null}" class="previous">
-            <a href="#" prevent-default ng-click="pageVideos(videos.prevPageToken)">&larr; Previous</a>
+            <a href="#" prevent-default ng-click="getPagedVideos(videos.prevPageToken)">&larr; Previous</a>
         </li>
         <li ng-class="{disabled: videos.nextPageToken == null}" class="next">
-            <a href="#" prevent-default ng-click="pageVideos(videos.nextPageToken)">Next &rarr;</a>
+            <a href="#" prevent-default ng-click="getPagedVideos(videos.nextPageToken)">Next &rarr;</a>
         </li>
     </ul>
 

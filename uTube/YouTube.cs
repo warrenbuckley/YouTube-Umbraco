@@ -29,7 +29,7 @@ namespace uTube
         }
 
         
-        public static SearchListResponse GetVideosForChannel(string pageToken, string channelId, SearchResource.ListRequest.OrderEnum orderBy)
+        public static SearchListResponse GetVideosForChannel(string pageToken, string channelId, string searchQuery, SearchResource.ListRequest.OrderEnum orderBy)
         {
             //Get YouTube Service
             var youTube = GetYouTubeService();
@@ -41,6 +41,15 @@ namespace uTube
             videoRequest.MaxResults = _noPerPage;                       //3 per page
             videoRequest.Type       = "video";                          //Only get videos, as searches can return results for channel & other types
             videoRequest.PageToken  = pageToken;                        //If more than 3 videos, we can request more videos using a page token (previous & next)
+
+            //If we have a search query then...
+            if (!string.IsNullOrEmpty(searchQuery))
+            {
+                //Change the order by from Date/Views etc to relevance
+                //and specify the search query
+                videoRequest.Order  = SearchResource.ListRequest.OrderEnum.Relevance;
+                videoRequest.Q      = searchQuery;
+            }
 
             //Perform request
             var videoResponse = videoRequest.Execute();

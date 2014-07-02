@@ -28,7 +28,7 @@ namespace uTube.Controllers
             Enum.TryParse(model.OrderBy, out order);
 
             //Go & get the videos
-            var channelVideos = YouTube.GetVideosForChannel(model.PageToken, model.ChannelId, order);
+            var channelVideos = YouTube.GetVideosForChannel(model.PageToken, model.ChannelId, model.SearchQuery, order);
 
             //Return the response from YouTube API
             return channelVideos;
