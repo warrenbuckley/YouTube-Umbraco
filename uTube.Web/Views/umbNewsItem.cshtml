@@ -27,6 +27,13 @@
                             }
 
                             @CurrentPage.BodyText
+                            
+                            
+                            @Model.Content.GetProperty("video").Value<br/>
+                            @Model.Content.GetProperty("video").XPathValue<br/>
+                            @Model.Content.GetProperty("video").DataValue<br/>
+                            
+
 
                             @{
                                 foreach (var dynamicVideo in CurrentPage.video)
@@ -37,8 +44,23 @@
                             
                             @{
                                 foreach (var typedVideo in Model.Content.GetPropertyValue<uTube>("video"))
+                                {   
+                                    <div>@Html.Raw(typedVideo.Player.EmbedHtml)</div>
+                                    @typedVideo.Snippet.Title<br/>
+                                    @typedVideo.Statistics.ViewCount<br/>
+                                    @typedVideo.Snippet.PublishedAt.Value.ToShortDateString()
+                                }
+                            }
+
+                            <hr/>
+
+                            @{
+                                foreach (var typedVideo in Model.Content.GetPropertyValue<uTube>("video").OrderByDescending(x => x.Statistics.ViewCount))
                                 {
                                     <div>@Html.Raw(typedVideo.Player.EmbedHtml)</div>
+                                    @typedVideo.Snippet.Title<br />
+                                    @typedVideo.Statistics.ViewCount<br />
+                                    @typedVideo.Snippet.PublishedAt.Value.ToShortDateString()
                                 }
                             }
                         </section>                           
