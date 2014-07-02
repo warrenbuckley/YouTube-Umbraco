@@ -16,7 +16,7 @@
     /// </summary>
     [PropertyValueType(typeof(uTube))]
     [PropertyValueCache(PropertyCacheValue.All, PropertyCacheLevel.Content)]
-    public class uTubeValueConverter : PropertyValueConverterBase
+    public class uTubeValueConverter : IPropertyValueConverter
     {
         /// <summary>
         /// Checks if this converter can convert the property editor and registers if it can.
@@ -27,7 +27,7 @@
         /// <returns>
         /// The <see cref="bool"/>.
         /// </returns>
-        public override bool IsConverter(PublishedPropertyType propertyType)
+        public bool IsConverter(PublishedPropertyType propertyType)
         {
             return propertyType.PropertyEditorAlias.Equals("uTube.channel");
         }
@@ -47,7 +47,7 @@
         /// <returns>
         /// The <see cref="object"/>.
         /// </returns>
-        public override object ConvertDataToSource(PublishedPropertyType propertyType, object source, bool preview)
+        public object ConvertDataToSource(PublishedPropertyType propertyType, object source, bool preview)
         {
             if (source != null)
             {
@@ -62,7 +62,7 @@
         }
 
         /// <summary>
-        /// Convert the source nodeId into a Video object
+        /// Convert the source array into a Video object
         /// </summary>
         /// <param name="propertyType">
         /// The published property type.
@@ -76,10 +76,31 @@
         /// <returns>
         /// The <see cref="object"/>.
         /// </returns>
-        public override object ConvertSourceToObject(PublishedPropertyType propertyType, object source, bool preview)
+        public object ConvertSourceToObject(PublishedPropertyType propertyType, object source, bool preview)
         {
             var selectedVideos = (string[])source;
             return UmbracoContext.Current != null ? new uTube(selectedVideos) : null;
+        }
+
+        /// <summary>
+        /// Convert the source array into a CSV string
+        /// </summary>
+        /// <param name="propertyType">
+        /// The published property type.
+        /// </param>
+        /// <param name="source">
+        /// The value of the property
+        /// </param>
+        /// <param name="preview">
+        /// The preview.
+        /// </param>
+        /// <returns>
+        /// The <see cref="object"/>.
+        /// </returns>
+        public object ConvertSourceToXPath(PublishedPropertyType propertyType, object source, bool preview)
+        {
+            var selectedVideos = (string[])source;
+            return string.Join(",", selectedVideos);
         }
     }
 }
