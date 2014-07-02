@@ -1,4 +1,6 @@
 @inherits UmbracoTemplatePage
+@using uTube.Models;
+            
 @{
     Layout = "umbLayout.cshtml";
     
@@ -25,6 +27,20 @@
                             }
 
                             @CurrentPage.BodyText
+
+                            @{
+                                foreach (var dynamicVideo in CurrentPage.video)
+                                {
+                                    <div>@Html.Raw(dynamicVideo.Player.EmbedHtml)</div>
+                                }
+                            }
+                            
+                            @{
+                                foreach (var typedVideo in Model.Content.GetPropertyValue<uTube>("video"))
+                                {
+                                    <div>@Html.Raw(typedVideo.Player.EmbedHtml)</div>
+                                }
+                            }
                         </section>                           
                     </article>
                     <!-- /Content -->
