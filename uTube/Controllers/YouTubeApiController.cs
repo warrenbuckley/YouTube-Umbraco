@@ -4,6 +4,7 @@ using Google.Apis.YouTube.v3;
 using Google.Apis.YouTube.v3.Data;
 using Umbraco.Web.Mvc;
 using Umbraco.Web.WebApi;
+using uTube.Models;
 
 namespace uTube.Controllers
 {
@@ -15,15 +16,6 @@ namespace uTube.Controllers
         public string GetHello(string name)
         {
             return "Hello " + name;
-        }
-
-        //http://localhost:50533/umbraco/backoffice/uTube/YouTubeApi/testy
-        [HttpGet]
-        public SearchListResponse Testy()
-        {
-            var popularVideos = YouTube.GetVideosForChannel(null,"UC-lHJZR3Gqxm24_Vd_AJ5Yw", SearchResource.ListRequest.OrderEnum.Date);
-
-            return popularVideos;
         }
 
         //http://localhost:50533/umbraco/backoffice/uTube/YouTubeApi/VideosForChannel
@@ -41,12 +33,5 @@ namespace uTube.Controllers
             //Return the response from YouTube API
             return channelVideos;
         }
-    }
-
-    public class ApiModel
-    {
-        public string PageToken { get; set; }
-        public string ChannelId { get; set; }
-        public string OrderBy { get; set; }
     }
 }
