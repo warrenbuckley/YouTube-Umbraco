@@ -1,6 +1,6 @@
 # uTube
 
-A YouTube picker
+A YouTube video picker for a channel
 
 ## Setup
 

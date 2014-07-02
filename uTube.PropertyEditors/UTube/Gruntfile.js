@@ -1,9 +1,15 @@
-module.exports = function(grunt) {
+module.exports = function (grunt) {
   require('load-grunt-tasks')(grunt);
-
-  // Add in time grunt
   require('time-grunt')(grunt);
+  require('grunt-karma')(grunt);
 
+  //cant load this with require
+  grunt.loadNpmTasks('grunt-contrib-jshint');
+
+  if (grunt.option('target') && !grunt.file.isDir(grunt.option('target'))) {
+    grunt.fail.warn('The --target option specified is not a valid directory');
+  }
+    
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     dest: grunt.option('target') || 'dist',
@@ -22,7 +28,7 @@ module.exports = function(grunt) {
     less: {
       dist: {
         options: {
-          paths: ["app/styles"],
+          paths: ['app/styles'],
         },
         files: {
           '<%= dest %>/<%= basePath %>/css/u.tube.css': 'app/styles/u.tube.less',
@@ -31,28 +37,33 @@ module.exports = function(grunt) {
     },
 
     watch: {
+      options: {
+        atBegin: true
+      },
+
       less: {
         files: ['app/styles/**/*.less'],
-        tasks: ['less:dist'],
-        options: {
-          spawn: false
-        }
+        tasks: ['less:dist']
       },
 
       js: {
         files: ['app/scripts/**/*.js'],
-        tasks: ['concat:dist'],
-        options: {
-          spawn: false
-        }
+        tasks: ['concat:dist']
+      },
+
+      testControllers: {
+        files: ['app/scripts/**/*.controller.js', 'test/specs/**/*.spec.js'],
+        tasks: ['jshint', 'test']
       },
 
       html: {
         files: ['app/views/**/*.html'],
-        tasks: ['copy:views'],
-        options: {
-          spawn: false
-        }
+        tasks: ['copy:views']
+      },
+
+      config: {
+        files: ['config/package.manifest'],
+        tasks: ['copy:config']
       }
     },
 
@@ -60,7 +71,7 @@ module.exports = function(grunt) {
       config: {
         src: 'config/package.manifest',
         dest: '<%= dest %>/<%= basePath %>/package.manifest',
-      },      
+      },
 
       views: {
         expand: true,
@@ -81,6 +92,13 @@ module.exports = function(grunt) {
         cwd: '<%= dest %>/',
         src: '**',
         dest: 'tmp/umbraco/'
+      },
+
+      testAssets: {
+        expand: true,
+        cwd: '<%= dest %>',
+        src: ['js/umbraco.*.js', 'lib/**/*.js'],
+        dest: 'test/assets/'
       }
     },
 
@@ -132,61 +150,57 @@ module.exports = function(grunt) {
     },
 
     clean: {
-      dist: '<%= dest %>'
+      dist: '[object Object]',
+      test: 'test/assets'
+    },
+
+    karma: {
+      unit: {
+        configFile: 'test/karma.conf.js'
+      }
+    },
+
+    jshint: {
+      dev: {
+        files: {
+          src: ['app/scripts/**/*.js']
+        },
+        options: {
+          curly: true,
+          eqeqeq: true,
+          immed: true,
+          latedef: true,
+          newcap: true,
+          noarg: true,
+          sub: true,
+          boss: true,
+          eqnull: true,
+          //NOTE: we need to use eval sometimes so ignore it
+          evil: true,
+          //NOTE: we need to check for strings such as "javascript:" so don't throw errors regarding those
+          scripturl: true,
+          //NOTE: we ignore tabs vs spaces because enforcing that causes lots of errors depending on the text editor being used
+          smarttabs: true,
+          globals: {}
+        }
+      }
     }
   });
 
-  //Legacy - now below so we can run our validation check first...
-  //grunt.registerTask('default', ['concat', 'less', 'copy:config', 'copy:views']);
-  //grunt.registerTask('nuget', ['clean', 'default', 'copy:nuget', 'template:nuspec', 'mkdir:pkg', 'nugetpack']);
-  //grunt.registerTask('package', ['clean', 'default', 'copy:umbraco', 'mkdir:pkg', 'umbracoPackage']);
-
-  //TASK: default
-  grunt.registerTask('default', 'Concat files, build Less & copy config & views', function(){
-    validateTarget();
-    grunt.task.run(['concat', 'less', 'copy:config', 'copy:views']);
-  });
-
-  //TASK nuget
-  grunt.registerTask('nuget', 'Clean, rebuild, copy files for nuget & create it', function(){
-    validateTarget();
-    grunt.task.run(['clean', 'default', 'copy:nuget', 'template:nuspec', 'mkdir:pkg', 'nugetpack']);
-  });
-
-
-  //TASK umbraco
-  grunt.registerTask('package', 'Clean, rebuild, copy files for umbraco package & create it', function(){
-    validateTarget();
-    grunt.task.run(['clean', 'default', 'copy:umbraco', 'mkdir:pkg', 'umbracoPackage']);
-  });
-
-
+  grunt.registerTask('default', ['jshint', 'concat', 'less', 'copy:config', 'copy:views']);
+  grunt.registerTask('nuget', ['clean', 'default', 'copy:nuget', 'template:nuspec', 'mkdir:pkg', 'nugetpack']);
+  grunt.registerTask('package', ['clean', 'default', 'copy:umbraco', 'mkdir:pkg', 'umbracoPackage']);
   
-  //Validation for --target option
-  function validateTarget() {
-
-    var destTarget = grunt.config.get('dest');
-
-    //Debug
-    grunt.log.oklns('Target (dest) is: ' + destTarget);
-
-    //If dest is not set to dist then a target option was set
-    if(destTarget != 'dist') {
-
-      //Happens when grunt --target is called
-      if(destTarget === true) {
-        //Error message & stop processing task
-        grunt.fail.warn('You need to specify a folder for target: grunt --target=c:/mysite/');
-      }
-
-      //Ensure that the dest value the --target is actually a directory that exists
-      if(!grunt.file.isDir(destTarget)){
-
-        //Error message & stop processing task
-        grunt.fail.warn('The target passed in is not a folder path.');
-      }
+  grunt.registerTask('test', 'Clean, copy test assets, test', function () {
+    var assetsDir = grunt.config.get('dest');
+    //copies over umbraco assets from --target, this must point at the /umbraco/ directory
+    if (assetsDir !== 'dist') {
+      grunt.task.run(['clean:test', 'copy:testAssets', 'karma']);
+    } else if (grunt.file.isDir('test/assets/js/')) {
+      grunt.log.oklns('Test assets found, running tests');
+      grunt.task.run(['karma']);
+    } else {
+      grunt.log.errorlns('Tests assets not found, skipping tests');
     }
-  }
-
+  });
 };
-
