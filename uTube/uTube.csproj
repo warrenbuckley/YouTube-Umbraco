@@ -228,6 +228,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\YouTubeApiController.cs" />
+    <Compile Include="Models\ApiModel.cs" />
     <Compile Include="Models\SelectedVideo.cs" />
     <Compile Include="Models\uTube.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
