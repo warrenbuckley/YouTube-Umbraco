@@ -2,8 +2,8 @@
 
     <!-- Search -->
     <div>
-        <input type="text" name="textbox" class="umb-editor umb-textstring textstring" placeholder="Search for a video in this channel" />
-        <button class="btn"><i class="icon icon-search"></i> Search</button>
+        <input type="text" name="textbox" class="umb-editor umb-textstring textstring" placeholder="Search for a video in this channel" ng-model="searchQuery" />
+        <button class="btn" prevent-default ng-click="search()"><i class="icon icon-search"></i> Search</button>
     </div>
     
     <hr />

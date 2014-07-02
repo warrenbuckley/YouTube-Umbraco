@@ -252,6 +252,7 @@
       <DependentUpon>uTube.scss</DependentUpon>
     </Content>
     <Content Include="App_Plugins\uTube\js\resources\uTube.resources.js" />
+    <Content Include="App_Plugins\uTube\views\preValues\uTube.orderby.html" />
     <Content Include="App_Plugins\uTube\views\propertyEditors\uTube.channel.html" />
     <Content Include="css\dummy.txt" />
     <Content Include="default.aspx" />

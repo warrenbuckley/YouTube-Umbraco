@@ -6,8 +6,8 @@
     //the factory object returned
     return {
 
-        getChannelVideos: function (channelId, pageToken) {
-            return $http.post(apiUrl + "VideosForChannel", {pageToken: pageToken, channelId: channelId, orderBy: "date"});
+        getChannelVideos: function (channelId, orderBy, searchQuery, pageToken) {
+            return $http.post(apiUrl + "VideosForChannel", { pageToken: pageToken, channelId: channelId, orderBy: orderBy });
         }
 
     };

@@ -14,6 +14,12 @@
             "key": "channelId",
             "label": "Channel ID",
             "view": "textstring"
+          },
+          {
+            "description": "Select the sort order for display videos",
+            "key": "orderBy",
+            "label": "Order By",
+            "view": "~/App_Plugins/uTube/views/prevalues/uTube.orderby.html"
           }
         ]
       }
