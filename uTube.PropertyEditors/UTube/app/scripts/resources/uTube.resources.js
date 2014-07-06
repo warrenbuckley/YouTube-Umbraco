@@ -1,4 +1,4 @@
-﻿angular.module('umbraco.resources').factory('uTubeResource', function ($q, $http) {
+angular.module('umbraco.resources').factory('uTubeResource', function ($q, $http) {
 
     //Base API URL
     var apiUrl = Umbraco.Sys.ServerVariables["uTube"]["ApiUrl"];

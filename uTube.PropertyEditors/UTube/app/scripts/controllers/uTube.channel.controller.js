@@ -1,4 +1,4 @@
-﻿angular.module("umbraco").controller("uTube.channel.controller", function ($scope, uTubeResource) {
+angular.module("umbraco").controller("uTube.channel.controller", function ($scope, uTubeResource) {
 
     //Set Has Videos to false - until we get some back from API call
     $scope.hasVideos = false;
@@ -39,7 +39,7 @@
         var tryFindItem = $scope.model.value.map(function (e) { return e.id; }).indexOf(newVideoObject.id);
         
         //Check to add or remove item
-        if (tryFindItem != -1) {
+        if (tryFindItem !== -1) {
             //Found the item in the array
             //Lets remove it at the index we found it at & remove the single item only
             $scope.model.value.splice(tryFindItem, 1);
@@ -60,8 +60,7 @@
 
         //Call getVideos() with our page token
         this.getVideos(pagedToken);
-
-    }
+    };
 
     $scope.getVideos = function (pagedToken) {
        
@@ -96,7 +95,7 @@
         //See if we can find the item or not in the array
         var tryFindItem = $scope.model.value.map(function (e) { return e.id; }).indexOf(videoId);
 
-        if (tryFindItem != -1) {
+        if (tryFindItem !== -1) {
             //Found it in the array
             return true;
         } else {

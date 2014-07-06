@@ -1,12 +1,12 @@
 {
-  "name": "UTube",
-  "version": "0.0.0",
+  "name": "uTube",
+  "version": "1.0.0",
   "description": "A YouTube video picker for a channel",
   "license": "MIT",
   "author": {
     "name": "Warren Buckley",
-    "email": "",
-    "url": ""
+    "email": "warren@creativewebspecialist.co.uk",
+    "url": "http://creativewebspecialist.co.uk"
   },
   "devDependencies": {
     "grunt": "~0.4.2",

@@ -1,4 +1,4 @@
-﻿$highlight-color: #53a93f;
+@highlight-color: #53a93f;
 
 .uTubeChannel {
     .videos {
@@ -17,14 +17,14 @@
             }
 
             &.selected {
-                border: 1px solid $highlight-color;
+                border: 1px solid @highlight-color;
                 position:relative;
 
                 &:before {
                     position:absolute;
                     bottom:0;
                     right:0;
-                    background:$highlight-color;
+                    background:@highlight-color;
                     height:25px;
                     width:25px;
                     line-height:25px;
@@ -41,7 +41,7 @@
                 }
 
                 &+h5 {
-                    color:$highlight-color;
+                    color:@highlight-color;
                 }
             }
         }

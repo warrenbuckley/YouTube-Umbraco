@@ -234,12 +234,6 @@
     <Content Include="config\BaseRestExtensions.config" />
     <Content Include="config\applications.config" />
     <Content Include="config\404handlers.config" />
-    <Content Include="App_Plugins\uTube\package.manifest" />
-    <Content Include="App_Plugins\uTube\js\controllers\uTube.channel.controller.js" />
-    <Content Include="App_Plugins\uTube\css\uTube.scss" />
-    <Content Include="App_Plugins\uTube\css\uTube.css.map">
-      <DependentUpon>uTube.css</DependentUpon>
-    </Content>
     <Content Include="Views\umbNewsItem.cshtml">
       <SubType>Code</SubType>
     </Content>
@@ -253,12 +247,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Plugins\dummy.txt" />
-    <Content Include="App_Plugins\uTube\css\uTube.css">
-      <DependentUpon>uTube.scss</DependentUpon>
-    </Content>
-    <Content Include="App_Plugins\uTube\js\resources\uTube.resources.js" />
-    <Content Include="App_Plugins\uTube\views\preValues\uTube.orderby.html" />
-    <Content Include="App_Plugins\uTube\views\propertyEditors\uTube.channel.html" />
     <Content Include="css\dummy.txt" />
     <Content Include="default.aspx" />
     <Content Include="Global.asax" />

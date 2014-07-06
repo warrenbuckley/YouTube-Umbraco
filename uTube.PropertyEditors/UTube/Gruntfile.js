@@ -15,23 +15,25 @@ module.exports = function (grunt) {
     dest: grunt.option('target') || 'dist',
     basePath: 'App_Plugins/<%= pkg.name %>',
 
+    //Concat all the JS files into one
     concat: {
       dist: {
         src: [
-          'app/scripts/controllers/u.tube.controller.js'
+          'app/scripts/**/*.js'
         ],
-        dest: '<%= dest %>/<%= basePath %>/js/u.tube.js',
+        dest: '<%= dest %>/<%= basePath %>/js/uTube.js',
         nonull: true
       }
     },
 
+    //Compile the less file into a CSS file
     less: {
       dist: {
         options: {
           paths: ['app/styles'],
         },
         files: {
-          '<%= dest %>/<%= basePath %>/css/u.tube.css': 'app/styles/u.tube.less',
+          '<%= dest %>/<%= basePath %>/css/uTube.css': 'app/styles/uTube.less',
         }
       }
     },
