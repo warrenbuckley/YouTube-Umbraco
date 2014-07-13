@@ -20,6 +20,12 @@
             "key": "orderBy",
             "label": "Order By",
             "view": "~/App_Plugins/uTube/views/prevalues/uTube.orderby.html"
+          },
+          {
+            "description": "To help debug any issues this will display info in the JS console",
+            "key": "debug",
+            "label": "Enable Debug",
+            "view": "boolean"
           }
         ]
       }

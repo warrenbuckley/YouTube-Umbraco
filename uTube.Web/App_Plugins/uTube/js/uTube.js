@@ -1,12 +1,24 @@
 angular.module("umbraco").controller("uTube.channel.controller", function ($scope, uTubeResource) {
 
+    function debug(message, object){
+        //Check we have the console object
+        //Some older browsers don't
+        if (typeof console === "object") {
+            //Now let's check if user set the debug flag on property editor to true
+            //In this case a string not a real number of 1 or 0
+            var isDebug = $scope.model.config.debug;
+            
+            if(isDebug === "1"){
+                console.log(message, object);
+            }
+        }
+    }
+
     //Set Has Videos to false - until we get some back from API call
     $scope.hasVideos = false;
 
-    console.log($scope.model);
-
-    //API Url - VideosForChannel
-    var url = Umbraco.Sys.ServerVariables["uTube"]["ApiUrl"] + "VideosForChannel";
+    //Debug message
+    debug("Scope Model on init", $scope.model);
 
     //Set to be default empty array or value saved
     $scope.model.value = $scope.model.value ? $scope.model.value : [];
@@ -14,6 +26,9 @@ angular.module("umbraco").controller("uTube.channel.controller", function ($scop
 
     //Try & get videos for grid on Page Load
     uTubeResource.getChannelVideos($scope.model.config.channelId, $scope.model.config.orderBy, null, null).then(function(response) {
+
+        //Debug message
+        debug("Response Data on init", response.data);
 
         //Check we have items back from YouTube
         if (response.data.items.length > 0) {
@@ -44,7 +59,7 @@ angular.module("umbraco").controller("uTube.channel.controller", function ($scop
             //Lets remove it at the index we found it at & remove the single item only
             $scope.model.value.splice(tryFindItem, 1);
         } else {
-            //Item does not exist in the array
+            //Item does not exist in the array, let's add it
             $scope.model.value.push(newVideoObject);
         }
     };
@@ -69,6 +84,9 @@ angular.module("umbraco").controller("uTube.channel.controller", function ($scop
 
         //Do new request to API
         uTubeResource.getChannelVideos($scope.model.config.channelId, $scope.model.config.orderBy, $scope.searchQuery, pagedToken).then(function (response) {
+
+            //Debug message
+            debug("Response Data from GetVideos()", response.data);
 
             //Check we have items back from YouTube
             if (response.data.items.length > 0) {
@@ -103,8 +121,6 @@ angular.module("umbraco").controller("uTube.channel.controller", function ($scop
             return false;
         }
     };
-
-
 });
 angular.module('umbraco.resources').factory('uTubeResource', function ($q, $http) {
 

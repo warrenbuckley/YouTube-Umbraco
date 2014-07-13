@@ -85,8 +85,15 @@ module.exports = function (grunt) {
       nuget: {
         expand: true,
         cwd: '<%= dest %>',
-        src: '**',
+        src: '<%= basePath %>/**',
         dest: 'tmp/nuget/content/'
+      },
+
+      nugetDll: {
+        expand: true,
+        cwd: '<%= dest %>',
+        src: ['bin/uTube.dll', 'bin/uTube.pdb'],
+        dest: 'tmp/nuget/lib/'
       },
 
       umbraco: {
@@ -190,7 +197,7 @@ module.exports = function (grunt) {
   });
 
   grunt.registerTask('default', ['jshint', 'concat', 'less', 'copy:config', 'copy:views']);
-  grunt.registerTask('nuget', ['clean', 'default', 'copy:nuget', 'template:nuspec', 'mkdir:pkg', 'nugetpack']);
+  grunt.registerTask('nuget', ['clean', 'default', 'copy:nuget', 'copy:nugetDll', 'template:nuspec', 'mkdir:pkg', 'nugetpack']);
   grunt.registerTask('package', ['clean', 'default', 'copy:umbraco', 'mkdir:pkg', 'umbracoPackage']);
   
   grunt.registerTask('test', 'Clean, copy test assets, test', function () {
