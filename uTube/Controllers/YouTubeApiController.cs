@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Net;
+using System.Net.Http;
 using System.Web.Http;
 using Google.Apis.YouTube.v3;
 using Google.Apis.YouTube.v3.Data;
@@ -23,15 +25,24 @@ namespace uTube.Controllers
         public SearchListResponse VideosForChannel(ApiModel model)
         {
             //Convert string orderby to the enum that we expect
-            
-            SearchResource.ListRequest.OrderEnum order;
-            Enum.TryParse(model.OrderBy, out order);
+            try
+            {
+                SearchResource.ListRequest.OrderEnum order = (SearchResource.ListRequest.OrderEnum)Enum.Parse(typeof(SearchResource.ListRequest.OrderEnum), model.OrderBy, true);
 
-            //Go & get the videos
-            var channelVideos = YouTube.GetVideosForChannel(model.PageToken, model.ChannelId, model.SearchQuery, order);
+                //Go & get the videos
+                var channelVideos = YouTube.GetVideosForChannel(model.PageToken, model.ChannelId, model.SearchQuery, order);
 
-            //Return the response from YouTube API
-            return channelVideos;
+                //Return the response from YouTube API
+                return channelVideos;
+
+            }
+            catch (ArgumentException)
+            {
+                var message = new HttpResponseMessage(HttpStatusCode.BadRequest);
+                message.Content = new StringContent("Order by cannot be converted to the enum");
+
+                throw new HttpResponseException(message);
+            }
         }
     }
 }

@@ -19,6 +19,8 @@ namespace uTube
         /// <returns></returns>
         public static YouTubeService GetYouTubeService()
         {
+
+
             var youTubeService = new YouTubeService(new BaseClientService.Initializer()
             {
                 ApiKey = _ApiKey,
