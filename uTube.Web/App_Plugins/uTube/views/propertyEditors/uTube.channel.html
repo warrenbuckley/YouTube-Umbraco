@@ -45,6 +45,8 @@
             </li>
         </ul>
 
-        {{ model.value | json }}
+        <div ng-if="model.config.debug === '1'">
+            {{ model.value | json }}
+        </div>
     </div>
 </div>
