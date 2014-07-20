@@ -105,9 +105,9 @@ module.exports = function (grunt) {
 
       umbracoDll: {
         expand: true,
-        cwd: '<%= dest %>/',
-        src: ['bin/uTube.dll', 'bin/uTube.pdb'],
-        dest: 'tmp/umbraco/'
+        cwd: 'bin/',
+        src: '**',
+        dest: 'tmp/umbraco/bin'
       },
 
       testAssets: {
