@@ -1,4 +1,4 @@
-# uTube
+# YouTube
 
 A YouTube video picker for a channel
 
