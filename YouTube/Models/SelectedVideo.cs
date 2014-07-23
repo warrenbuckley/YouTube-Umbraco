@@ -1,7 +1,7 @@
-﻿namespace uTube.Models
-{
-    using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
 
+namespace YouTube.Models
+{
     /// <summary>
     /// View Model for selected videos
     /// </summary>

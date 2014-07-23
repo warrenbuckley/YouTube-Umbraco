@@ -1,22 +1,19 @@
-﻿namespace uTube
+﻿using System.Collections.Generic;
+using System.Linq;
+using Newtonsoft.Json;
+using Umbraco.Core.Models.PublishedContent;
+using Umbraco.Core.PropertyEditors;
+using Umbraco.Web;
+using YouTube.Models;
+
+namespace YouTube
 {
-    using System.Collections.Generic;
-    using System.Linq;
-
-    using Newtonsoft.Json;
-
-    using Umbraco.Core.Models.PublishedContent;
-    using Umbraco.Core.PropertyEditors;
-    using Umbraco.Web;
-
-    using uTube.Models;
-
     /// <summary>
     /// The uTube property value converter.
     /// </summary>
-    [PropertyValueType(typeof(uTube))]
+    [PropertyValueType(typeof(global::YouTube.Models.YouTube))]
     [PropertyValueCache(PropertyCacheValue.All, PropertyCacheLevel.Content)]
-    public class uTubeValueConverter : IPropertyValueConverter
+    public class YouTubeValueConverter : IPropertyValueConverter
     {
         /// <summary>
         /// Checks if this converter can convert the property editor and registers if it can.
@@ -79,7 +76,7 @@
         public object ConvertSourceToObject(PublishedPropertyType propertyType, object source, bool preview)
         {
             var selectedVideos = (string[])source;
-            return UmbracoContext.Current != null ? new uTube(selectedVideos) : null;
+            return UmbracoContext.Current != null ? new global::YouTube.Models.YouTube(selectedVideos) : null;
         }
 
         /// <summary>

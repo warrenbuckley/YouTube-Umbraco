@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "uTube.Web", "uTube.Web\uTube.Web.csproj", "{E9033DE7-18D4-4B09-8E75-B658FD7F19AE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YouTube.Web", "YouTube.Web\YouTube.Web.csproj", "{E9033DE7-18D4-4B09-8E75-B658FD7F19AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "uTube", "uTube\uTube.csproj", "{F796BA67-B419-488D-B660-459E8CCAC47A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YouTube", "YouTube\YouTube.csproj", "{F796BA67-B419-488D-B660-459E8CCAC47A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{FEE2B81F-44F6-44B1-A735-900D429E3726}"
 	ProjectSection(SolutionItems) = preProject

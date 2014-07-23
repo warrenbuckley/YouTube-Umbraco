@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("uTube")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("YouTube for Umbraco")]
+[assembly: AssemblyDescription("This is a package for Umbraco v7+ to choose YouTube Videos")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("uTube")]
+[assembly: AssemblyCompany("Warren Buckley")]
+[assembly: AssemblyProduct("YouTube for Umbraco")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

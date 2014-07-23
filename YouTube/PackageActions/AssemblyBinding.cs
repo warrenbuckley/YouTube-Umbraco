@@ -7,7 +7,7 @@ using umbraco.cms.businesslogic.packager.standardPackageActions;
 using Umbraco.Core.Logging;
 using umbraco.interfaces;
 
-namespace uTube.PackageActions
+namespace YouTube.PackageActions
 {
 
     /// <summary>
@@ -17,7 +17,7 @@ namespace uTube.PackageActions
     {
         public string Alias()
         {
-            return "uTube.AddAssemblyBinding";
+            return "YouTube.AddAssemblyBinding";
         }
 
         public bool Execute(string packageName, XmlNode xmlData)
@@ -140,7 +140,7 @@ namespace uTube.PackageActions
         public XmlNode SampleXml()
         {
             string str =
-                "<Action runat=\"install\" undo=\"false\" alias=\"uTube.AddAssemblyBinding\" name=\"newone\" publicKeyToken=\"973c344c93aac60d\" oldVersion=\"1\" newVersion=\"2\" />";
+                "<Action runat=\"install\" undo=\"false\" alias=\"YouTube.AddAssemblyBinding\" name=\"newone\" publicKeyToken=\"973c344c93aac60d\" oldVersion=\"1\" newVersion=\"2\" />";
             return helper.parseStringToXmlNode(str);
         }
 

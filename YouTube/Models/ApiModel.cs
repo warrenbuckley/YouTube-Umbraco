@@ -1,4 +1,4 @@
-﻿namespace uTube.Models
+﻿namespace YouTube.Models
 {
     public class ApiModel
     {

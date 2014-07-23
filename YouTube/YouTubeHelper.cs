@@ -1,16 +1,14 @@
-﻿using System.Collections.Generic;
-using Google.Apis.Services;
+﻿using Google.Apis.Services;
 using Google.Apis.YouTube.v3;
 using Google.Apis.YouTube.v3.Data;
-using System.Linq;
 
-namespace uTube
+namespace YouTube
 {
-    public class YouTube
+    public class YouTubeHelper
     {
         //CONSTANTS
         private const string _ApiKey            = "AIzaSyAgXB3nYk3f00eXZd0FGsUjJySf2Fnp7KA";
-        private const string _ApplicationName   = "uTube for Umbraco";
+        private const string _ApplicationName   = "YouTube for Umbraco";
         private const int _noPerPage            = 3;
 
         /// <summary>
@@ -23,7 +21,7 @@ namespace uTube
 
             var youTubeService = new YouTubeService(new BaseClientService.Initializer()
             {
-                ApiKey = _ApiKey,
+                ApiKey          = _ApiKey,
                 ApplicationName = _ApplicationName
             });
 
@@ -73,8 +71,8 @@ namespace uTube
             var youTube = GetYouTubeService();
 
             //TODO: Inspect request properly & see what we actually need or not
-            var videoRequest = youTube.Videos.List("snippet, contentDetails, liveStreamingDetails, player, recordingDetails, statistics, status");
-            videoRequest.Id = videoId;
+            var videoRequest    = youTube.Videos.List("snippet, contentDetails, liveStreamingDetails, player, recordingDetails, statistics, status");
+            videoRequest.Id     = videoId;
 
             //Perform request
             var videoResponse = videoRequest.Execute();

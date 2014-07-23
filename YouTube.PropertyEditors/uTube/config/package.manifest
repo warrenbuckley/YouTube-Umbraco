@@ -13,7 +13,12 @@
             "description": "Enter the unique Channel ID to display videos only for that channel",
             "key": "channelId",
             "label": "Channel ID",
-            "view": "textstring"
+            "view": "textstring",
+            "validation": [
+              {
+                "type": "Required"
+              }
+            ]
           },
           {
             "description": "Select the sort order for display videos",

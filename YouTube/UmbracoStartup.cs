@@ -6,9 +6,9 @@ using System.Web.Routing;
 using Umbraco.Core;
 using Umbraco.Web;
 using Umbraco.Web.UI.JavaScript;
-using uTube.Controllers;
+using YouTube.Controllers;
 
-namespace uTube
+namespace YouTube
 {
     public class UmbracoStartup : ApplicationEventHandler
     {
@@ -35,7 +35,7 @@ namespace uTube
             var urlHelper = new UrlHelper(new RequestContext(new HttpContextWrapper(HttpContext.Current), new RouteData()));
             
             //Add to dictionary (uTube)
-            e.Add("uTube", new Dictionary<string, object>
+            e.Add("YouTube", new Dictionary<string, object>
             {
                 //Then child item of uTube - Add Base Url to controller - minus the method name
                 {"ApiUrl", urlHelper.GetUmbracoApiServiceBaseUrl<YouTubeApiController>(controller => controller.VideosForChannel(null))},
