@@ -1,4 +1,4 @@
-uTube - YouTube for Umbraco
+YouTube for Umbraco (V7+)
 =====
 This is a project for adding YouTube videos to your Umbraco site.
 Currently it only consists of a single property editor that allows you to easily pick videos from a specific YouTube channel.
