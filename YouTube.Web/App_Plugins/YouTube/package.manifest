@@ -2,10 +2,10 @@
   "propertyEditors": [
     {
       "name": "YouTube Picker for Channel",
-      "alias": "uTube.channel",
+      "alias": "YouTube.Channel",
       "editor": {
         "valueType": "JSON",
-        "view": "~/App_Plugins/uTube/views/propertyEditors/uTube.channel.html"
+        "view": "~/App_Plugins/YouTube/views/propertyEditors/YouTube.channel.html"
       },
       "prevalues": {
         "fields": [
@@ -14,17 +14,17 @@
             "key": "channelId",
             "label": "Channel ID",
             "view": "textstring",
-            "validation":  [
-                {
-                    "type":  "Required"
-                }
+            "validation": [
+              {
+                "type": "Required"
+              }
             ]
           },
           {
             "description": "Select the sort order for display videos",
             "key": "orderBy",
             "label": "Order By",
-            "view": "~/App_Plugins/uTube/views/prevalues/uTube.orderby.html"
+            "view": "~/App_Plugins/YouTube/views/prevalues/YouTube.orderby.html"
           },
           {
             "description": "To help debug any issues this will display info in the JS console",
@@ -37,10 +37,10 @@
     }
   ],
   "css": [
-    "~/App_Plugins/uTube/css/uTube.css"
+    "~/App_Plugins/YouTube/css/YouTube.css"
   ],
   "javascript": [
-    "~/App_Plugins/uTube/js/uTube.js"
+    "~/App_Plugins/YouTube/js/YouTube.js"
   ]
 }
 

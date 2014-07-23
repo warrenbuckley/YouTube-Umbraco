@@ -21,7 +21,7 @@ module.exports = function (grunt) {
         src: [
           'app/scripts/**/*.js'
         ],
-        dest: '<%= dest %>/<%= basePath %>/js/uTube.js',
+        dest: '<%= dest %>/<%= basePath %>/js/YouTube.js',
         nonull: true
       }
     },
@@ -33,7 +33,7 @@ module.exports = function (grunt) {
           paths: ['app/styles'],
         },
         files: {
-          '<%= dest %>/<%= basePath %>/css/uTube.css': 'app/styles/uTube.less',
+          '<%= dest %>/<%= basePath %>/css/YouTube.css': 'app/styles/YouTube.less',
         }
       }
     },
@@ -87,14 +87,7 @@ module.exports = function (grunt) {
         cwd: '<%= dest %>',
         src: '<%= basePath %>/**',
         dest: 'tmp/nuget/content/'
-      },
-
-      nugetDll: {
-        expand: true,
-        cwd: '<%= dest %>',
-        src: ['bin/uTube.dll', 'bin/uTube.pdb'],
-        dest: 'tmp/nuget/lib/'
-      },
+      },      
 
       umbraco: {
         expand: true,
@@ -103,7 +96,7 @@ module.exports = function (grunt) {
         dest: 'tmp/umbraco/'
       },
 
-      umbracoDll: {
+      umbracoBin: {
         expand: true,
         cwd: 'bin/',
         src: '**',
@@ -204,8 +197,8 @@ module.exports = function (grunt) {
   });
 
   grunt.registerTask('default', ['jshint', 'concat', 'less', 'copy:config', 'copy:views']);
-  grunt.registerTask('nuget', ['clean', 'default', 'copy:nuget', 'copy:nugetDll', 'template:nuspec', 'mkdir:pkg', 'nugetpack']);
-  grunt.registerTask('package', ['clean', 'default', 'copy:umbraco', 'copy:umbracoDll','mkdir:pkg', 'umbracoPackage']);
+  grunt.registerTask('nuget', ['clean', 'default', 'copy:nuget', 'template:nuspec', 'mkdir:pkg', 'nugetpack']);
+  grunt.registerTask('package', ['clean', 'default', 'copy:umbraco', 'copy:umbracoBin','mkdir:pkg', 'umbracoPackage']);
   
   grunt.registerTask('test', 'Clean, copy test assets, test', function () {
     var assetsDir = grunt.config.get('dest');

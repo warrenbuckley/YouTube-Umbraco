@@ -1,19 +1,19 @@
-.uTubeChannel .videos .span4 {
+.YouTubeChannel .videos .span4 {
   padding: 2px;
 }
-.uTubeChannel .videos a {
+.YouTubeChannel .videos a {
   padding: 3px;
   border: 1px solid transparent;
   display: block;
 }
-.uTubeChannel .videos a:hover {
+.YouTubeChannel .videos a:hover {
   border: 1px solid #aaa;
 }
-.uTubeChannel .videos a.selected {
+.YouTubeChannel .videos a.selected {
   border: 1px solid #53a93f;
   position: relative;
 }
-.uTubeChannel .videos a.selected:before {
+.YouTubeChannel .videos a.selected:before {
   position: absolute;
   bottom: 0;
   right: 0;
@@ -29,9 +29,9 @@
   font-weight: normal;
   padding-left: 10px;
 }
-.uTubeChannel .videos a.selected + h5 {
+.YouTubeChannel .videos a.selected + h5 {
   color: #53a93f;
 }
-.uTubeChannel .videos img {
+.YouTubeChannel .videos img {
   max-width: 100%;
 }

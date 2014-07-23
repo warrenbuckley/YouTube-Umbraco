@@ -1,5 +1,5 @@
 @inherits UmbracoTemplatePage
-@using uTube.Models;
+@using YouTube.Models
             
 @{
     Layout = "umbLayout.cshtml";
@@ -43,7 +43,7 @@
                             }
                             
                             @{
-                                foreach (var typedVideo in Model.Content.GetPropertyValue<uTube>("video"))
+                                foreach (var typedVideo in Model.Content.GetPropertyValue<YouTube>("video"))
                                 {   
                                     <div>@Html.Raw(typedVideo.Player.EmbedHtml)</div>
                                     @typedVideo.Snippet.Title<br/>
@@ -55,7 +55,7 @@
                             <hr/>
 
                             @{
-                                foreach (var typedVideo in Model.Content.GetPropertyValue<uTube>("video").OrderByDescending(x => x.Statistics.ViewCount))
+                                foreach (var typedVideo in Model.Content.GetPropertyValue<YouTube>("video").OrderByDescending(x => x.Statistics.ViewCount))
                                 {
                                     <div>@Html.Raw(typedVideo.Player.EmbedHtml)</div>
                                     @typedVideo.Snippet.Title<br />

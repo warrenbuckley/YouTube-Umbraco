@@ -7,7 +7,7 @@
     <owners><%= author %></owners>
     <description><%= description %></description>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <tags>Umbraco, YouTube, uTube, Umbraco Property Editor</tags>
+    <tags>Umbraco, YouTube, Umbraco Property Editor</tags>
     <dependencies>
         <dependency id="Google.Apis.YouTube.v3" version="1.8.1.1100" />
     </dependencies>

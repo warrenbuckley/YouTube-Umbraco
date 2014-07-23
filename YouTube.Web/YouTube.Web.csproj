@@ -12,8 +12,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>uTube.Web</RootNamespace>
-    <AssemblyName>uTube.Web</AssemblyName>
+    <RootNamespace>YouTube.Web</RootNamespace>
+    <AssemblyName>YouTube.Web</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -237,6 +237,7 @@
     <Content Include="Views\umbNewsItem.cshtml">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="App_Data\packages\created\createdPackages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

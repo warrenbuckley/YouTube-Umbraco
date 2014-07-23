@@ -1,4 +1,4 @@
-angular.module("umbraco").controller("uTube.channel.controller", function ($scope, uTubeResource) {
+angular.module("umbraco").controller("YouTube.channel.controller", function ($scope, YouTubeResource) {
 
     function debug(message, object){
         //Check we have the console object
@@ -25,7 +25,7 @@ angular.module("umbraco").controller("uTube.channel.controller", function ($scop
 
 
     //Try & get videos for grid on Page Load
-    uTubeResource.getChannelVideos($scope.model.config.channelId, $scope.model.config.orderBy, null, null).then(function(response) {
+    YouTubeResource.getChannelVideos($scope.model.config.channelId, $scope.model.config.orderBy, null, null).then(function(response) {
 
         //Debug message
         debug("Response Data on init", response.data);
@@ -83,7 +83,7 @@ angular.module("umbraco").controller("uTube.channel.controller", function ($scop
         $scope.hasVideos = false;
 
         //Do new request to API
-        uTubeResource.getChannelVideos($scope.model.config.channelId, $scope.model.config.orderBy, $scope.searchQuery, pagedToken).then(function (response) {
+        YouTubeResource.getChannelVideos($scope.model.config.channelId, $scope.model.config.orderBy, $scope.searchQuery, pagedToken).then(function (response) {
 
             //Debug message
             debug("Response Data from GetVideos()", response.data);
@@ -122,10 +122,10 @@ angular.module("umbraco").controller("uTube.channel.controller", function ($scop
         }
     };
 });
-angular.module('umbraco.resources').factory('uTubeResource', function ($q, $http) {
+angular.module('umbraco.resources').factory('YouTubeResource', function ($q, $http) {
 
     //Base API URL
-    var apiUrl = Umbraco.Sys.ServerVariables["uTube"]["ApiUrl"];
+    var apiUrl = Umbraco.Sys.ServerVariables["YouTube"]["ApiUrl"];
 
     //the factory object returned
     return {

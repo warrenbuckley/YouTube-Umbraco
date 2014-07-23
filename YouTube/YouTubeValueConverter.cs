@@ -26,7 +26,7 @@ namespace YouTube
         /// </returns>
         public bool IsConverter(PublishedPropertyType propertyType)
         {
-            return propertyType.PropertyEditorAlias.Equals("uTube.channel");
+            return propertyType.PropertyEditorAlias.Equals("YouTube.Channel");
         }
 
         /// <summary>
