@@ -1,5 +1,5 @@
 cd YouTube.PropertyEditors\YouTube\
-Call npm install -g grunt-cli
+Call npm install grunt-cli
 Call npm install
 Call grunt
 cd ..\..\BuildPackage\
