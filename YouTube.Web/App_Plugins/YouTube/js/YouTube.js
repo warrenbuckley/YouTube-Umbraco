@@ -25,7 +25,7 @@ angular.module("umbraco").controller("YouTube.channel.controller", function ($sc
 
 
     //Try & get videos for grid on Page Load
-    YouTubeResource.getChannelVideos($scope.model.config.channelId, $scope.model.config.orderBy, null, null).then(function(response) {
+    YouTubeResource.getChannelVideos($scope.model.config.channel.channelId, $scope.model.config.orderBy, null, null).then(function(response) {
 
         //Debug message
         debug("Response Data on init", response.data);
@@ -83,7 +83,7 @@ angular.module("umbraco").controller("YouTube.channel.controller", function ($sc
         $scope.hasVideos = false;
 
         //Do new request to API
-        YouTubeResource.getChannelVideos($scope.model.config.channelId, $scope.model.config.orderBy, $scope.searchQuery, pagedToken).then(function (response) {
+        YouTubeResource.getChannelVideos($scope.model.config.channel.channelId, $scope.model.config.orderBy, $scope.searchQuery, pagedToken).then(function (response) {
 
             //Debug message
             debug("Response Data from GetVideos()", response.data);
@@ -122,6 +122,59 @@ angular.module("umbraco").controller("YouTube.channel.controller", function ($sc
         }
     };
 });
+angular.module("umbraco").controller("YouTube.prevalue.channel.controller", function ($scope, YouTubeResource) {
+
+    
+
+    //Set to be default empty object or value saved if we have it
+    $scope.model.value = $scope.model.value ? $scope.model.value : {};
+
+    if($scope.model.value){
+        //Have a value - so lets assume our JSON object is all good
+        //Debug message
+        console.log("Scope Model Value on init", $scope.model.value);
+
+        //As we have JSON value on init
+        //Let's set the textbox to the value of the querried username
+        $scope.username = $scope.model.value.querriedUsername;
+    }
+
+
+    $scope.queryChannel = function(username) {
+
+        //Debug info
+        console.log("Query Channel Click", username);
+
+        //Query this via our resource
+        YouTubeResource.queryUsernameForChannel(username).then(function(response) {
+            
+            //Debug info
+            console.log("Value back from query API", response);
+
+            //Data we are interested is in
+            //response.data.items[0]
+            var channel = response.data.items[0];
+            
+
+            //Create new JSON object as we don't need full object from Google's API response     
+            var newChannelObject = {
+                "querriedUsername": username,
+                "channelId": channel.id,
+                "title": channel.snippet.title,
+                "description": channel.snippet.description,
+                "thumbnails": channel.snippet.thumbnails,
+                "statistics": channel.statistics
+            };
+        
+            //Set the value to be our new JSON object
+            $scope.model.value = newChannelObject;
+
+
+        });     
+        
+    };
+
+});
 angular.module('umbraco.resources').factory('YouTubeResource', function ($q, $http) {
 
     //Base API URL
@@ -132,6 +185,10 @@ angular.module('umbraco.resources').factory('YouTubeResource', function ($q, $ht
 
         getChannelVideos: function (channelId, orderBy, searchQuery, pageToken) {
             return $http.post(apiUrl + "VideosForChannel", { pageToken: pageToken, channelId: channelId, searchQuery: searchQuery, orderBy: orderBy });
+        },
+
+        queryUsernameForChannel: function(usernameToQuery) {
+        	return $http.get(apiUrl + "ChannelFromUsername?username=" + usernameToQuery);
         }
 
     };

@@ -85,7 +85,7 @@ namespace YouTube
         {
             var youTube = GetYouTubeService();
 
-            var channelQueryRequest         = youTube.Channels.List("snippet");
+            var channelQueryRequest         = youTube.Channels.List("snippet,id,contentDetails,statistics,topicDetails");
             channelQueryRequest.ForUsername = usernameToQuery;
             channelQueryRequest.MaxResults  = 1;
 
@@ -99,7 +99,7 @@ namespace YouTube
         {
             var youTube = GetYouTubeService();
 
-            var channelQueryRequest         = youTube.Channels.List("snippet");
+            var channelQueryRequest         = youTube.Channels.List("snippet,id,contentDetails,statistics,topicDetails");
             channelQueryRequest.Id          = channelId;
             channelQueryRequest.MaxResults  = 1;
 
