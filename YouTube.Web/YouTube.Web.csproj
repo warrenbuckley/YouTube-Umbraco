@@ -110,6 +110,10 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.6.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="PackageActionTester, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\NonNugetPackages\PackageActionTester.dll</HintPath>
+    </Reference>
     <Reference Include="SQLCE4Umbraco">
       <HintPath>..\packages\UmbracoCms.Core.7.1.4\lib\SQLCE4Umbraco.dll</HintPath>
     </Reference>
@@ -260,11 +264,10 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\YouTube\YouTube.csproj">
       <Project>{f796ba67-b419-488d-b660-459e8ccac47a}</Project>
-      <Name>uTube</Name>
+      <Name>YouTube</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
