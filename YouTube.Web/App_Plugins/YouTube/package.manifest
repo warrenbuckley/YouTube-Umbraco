@@ -10,15 +10,10 @@
       "prevalues": {
         "fields": [
           {
-            "description": "Enter the unique Channel ID to display videos only for that channel",
-            "key": "channelId",
-            "label": "Channel ID",
-            "view": "textstring",
-            "validation": [
-              {
-                "type": "Required"
-              }
-            ]
+            "description": "Enter the Channel to display videos only for that channel",
+            "key": "channel",
+            "label": "Channel ",
+            "view": "~/App_Plugins/YouTube/views/prevalues/YouTube.channelinfo.html"
           },
           {
             "description": "Select the sort order for display videos",
