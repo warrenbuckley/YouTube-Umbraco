@@ -260,11 +260,10 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\YouTube\YouTube.csproj">
       <Project>{f796ba67-b419-488d-b660-459e8ccac47a}</Project>
-      <Name>uTube</Name>
+      <Name>YouTube</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
