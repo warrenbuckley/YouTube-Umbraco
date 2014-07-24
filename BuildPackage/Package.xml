@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<umbPackage>
+	<info>
+		<package>
+			<name>YouTube</name>
+			<version>0.0.0</version>
+      <license url="http://opensource.org/licenses/MIT">MIT License</license>
+			<url>https://github.com/warrenbuckley/YouTube-Umbraco</url>
+			<requirements>
+				<major>0</major>
+				<minor>0</minor>
+				<patch>0</patch>
+			</requirements>
+		</package>
+		<author>
+      <name>Warren Buckley</name>
+      <website>http://creativewebspecialist.co.uk</website>
+		</author>
+		<readme>
+      <![CDATA[A YouTube video picker for Umbraco.
+
+      Many Thanks to Jeavon for the Property Value Convertor from the basic JSON we save to the more useful & strongly typed Video object, along with the PackageAction to add the assembly binding to the Web.Config]]>
+    </readme>
+	</info>
+
+	<DocumentTypes />
+	<Templates />
+	<Stylesheets />
+	<Macros />
+	<DictionaryItems />
+	<Languages />
+	<DataTypes />
+
+	<Actions/>
+	
+	<control />
+
+	<files />
+
+</umbPackage>

@@ -18,6 +18,8 @@ YouTube.Web/obj/
 YouTube/obj/
 YouTube/bin/
 
+BuildPackage/Package/*
+
 # User-specific files
 *.suo
 *.user

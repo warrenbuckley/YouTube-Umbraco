@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>YouTube</id>
+        <version>0.0.0</version>
+        <title>YouTube</title>
+        <authors>Warren Buckley</authors>
+        <owners>Warren Buckley</owners>
+        <projectUrl>https://github.com/warrenbuckley/YouTube-Umbraco</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>A YouTube video picker for Umbraco</description>
+        <summary>A YouTube video picker for Umbraco</summary>
+        <copyright>Warren Buckley</copyright>
+        <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
+        <language>en-GB</language>
+        <tags>umbraco</tags>
+        <dependencies>
+          <dependency id="UmbracoCms.Core" version="7.1.4" />
+          <dependency id="Microsoft.Net.Http" version="2.1.10" />
+          <dependency id="Microsoft.Bcl.Async" version="1.0.166" />
+        </dependencies>
+    </metadata>    
+</package>
