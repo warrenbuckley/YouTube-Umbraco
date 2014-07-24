@@ -20,7 +20,7 @@ namespace YouTube.Controllers
             return "Hello " + name;
         }
 
-        //http://localhost:50533/umbraco/backoffice/uTube/YouTubeApi/VideosForChannel
+        //http://localhost:50533/umbraco/backoffice/YouTube/YouTubeApi/VideosForChannel
         [HttpPost]
         public SearchListResponse VideosForChannel(ApiModel model)
         {
@@ -43,6 +43,20 @@ namespace YouTube.Controllers
 
                 throw new HttpResponseException(message);
             }
+        }
+
+        //http://localhost:50533/umbraco/backoffice/YouTube/YouTubeApi/ChannelFromId?channelId=1234
+        [HttpGet]
+        public ChannelListResponse ChannelFromId(string channelId)
+        {
+            return YouTubeHelper.GetChannelFromId(channelId);
+        }
+
+        //http://localhost:50533/umbraco/backoffice/YouTube/YouTubeApi/ChannelFromUsername?username=uHangout
+        [HttpGet]
+        public ChannelListResponse ChannelFromUsername(string username)
+        {
+            return YouTubeHelper.GetChannelFromUsername(username);
         }
     }
 }

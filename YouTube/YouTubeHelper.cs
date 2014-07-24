@@ -80,5 +80,33 @@ namespace YouTube
             return videoResponse;
         }
 
+
+        public static ChannelListResponse GetChannelFromUsername(string usernameToQuery)
+        {
+            var youTube = GetYouTubeService();
+
+            var channelQueryRequest         = youTube.Channels.List("snippet");
+            channelQueryRequest.ForUsername = usernameToQuery;
+            channelQueryRequest.MaxResults  = 1;
+
+            //Perform request
+            var channelResponse = channelQueryRequest.Execute();
+
+            return channelResponse;
+        }
+
+        public static ChannelListResponse GetChannelFromId(string channelId)
+        {
+            var youTube = GetYouTubeService();
+
+            var channelQueryRequest         = youTube.Channels.List("snippet");
+            channelQueryRequest.Id          = channelId;
+            channelQueryRequest.MaxResults  = 1;
+
+            //Perform request
+            var channelResponse = channelQueryRequest.Execute();
+
+            return channelResponse;
+        }
     }
 }
