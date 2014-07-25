@@ -13,13 +13,27 @@
   <Import Project="$(MSBuildNugetTasksPath)\MSBuild.NuGet.Tasks.Targets" />
 
 	<!-- PROPERTIES -->
-	<PropertyGroup>
-		<VersionMajor>1</VersionMajor>
-		<VersionMinor>0</VersionMinor>
-		<VersionPatch>0</VersionPatch>
-		<VersionSuffix>-beta</VersionSuffix>
-		<UmbracoVersion>7.1.4</UmbracoVersion>
-	</PropertyGroup>
+  <Choose>
+    <When Condition="$(BuildCounter) != ''">
+      <PropertyGroup>
+        <VersionMajor>1</VersionMajor>
+        <VersionMinor>0</VersionMinor>
+        <VersionPatch>0</VersionPatch>
+        <VersionSuffix>-build$(BuildCounter)</VersionSuffix>
+        <UmbracoVersion>7.1.4</UmbracoVersion>
+      </PropertyGroup>
+    </When>
+    <Otherwise>
+      <PropertyGroup>
+        <VersionMajor>1</VersionMajor>
+        <VersionMinor>0</VersionMinor>
+        <VersionPatch>0</VersionPatch>
+        <VersionSuffix>-beta</VersionSuffix>
+        <UmbracoVersion>7.1.4</UmbracoVersion>
+      </PropertyGroup>
+    </Otherwise>
+  </Choose>
+
 
 	<PropertyGroup>
 		<RootDir>$(MSBuildProjectDirectory)\..</RootDir>
