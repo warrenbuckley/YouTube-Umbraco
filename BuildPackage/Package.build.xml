@@ -23,6 +23,15 @@
         <UmbracoVersion>7.1.4</UmbracoVersion>
       </PropertyGroup>
     </When>
+    <When Condition="$(APPVEYOR_BUILD_NUMBER) != ''">
+      <PropertyGroup>
+        <VersionMajor>1</VersionMajor>
+        <VersionMinor>0</VersionMinor>
+        <VersionPatch>0</VersionPatch>
+        <VersionSuffix>-build$(APPVEYOR_BUILD_NUMBER)</VersionSuffix>
+        <UmbracoVersion>7.1.4</UmbracoVersion>
+      </PropertyGroup>
+    </When>  
     <Otherwise>
       <PropertyGroup>
         <VersionMajor>1</VersionMajor>
