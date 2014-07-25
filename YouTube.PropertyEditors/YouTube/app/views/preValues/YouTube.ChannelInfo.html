@@ -5,7 +5,7 @@
 
 	<hr/>
 
-	<div ng-show="model.value" class="row-fluid">
+	<div ng-if="model.value" class="row-fluid">
 		<div class="span2">
 			<img ng-src="{{ model.value.thumbnails.default.url }}" />
 		</div>
