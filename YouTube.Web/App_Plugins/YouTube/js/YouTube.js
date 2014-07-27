@@ -122,9 +122,7 @@ angular.module("umbraco").controller("YouTube.channel.controller", function ($sc
         }
     };
 });
-angular.module("umbraco").controller("YouTube.prevalue.channel.controller", function ($scope, YouTubeResource, notificationsService) {
-
-    
+angular.module("umbraco").controller("YouTube.prevalue.channel.controller", function ($scope, YouTubeResource, notificationsService, angularHelper) {
 
     //Set to be default empty object or value saved if we have it
     $scope.model.value = $scope.model.value ? $scope.model.value : null;
@@ -144,6 +142,9 @@ angular.module("umbraco").controller("YouTube.prevalue.channel.controller", func
 
         //Debug info
         console.log("Query Channel Click", username);
+
+        //Default flag for validity
+        var isThisValid = false;
 
         //Query this via our resource
         YouTubeResource.queryUsernameForChannel(username).then(function(response) {
@@ -172,14 +173,34 @@ angular.module("umbraco").controller("YouTube.prevalue.channel.controller", func
             
                 //Set the value to be our new JSON object
                 $scope.model.value = newChannelObject;
+
+                //Set our flag to true
+                isThisValid = true;
             }
             else {
                 //Fire a notification - saying user can not be found
                  notificationsService.error("YouTube User Lookup","The channel/user '" + username + "' could not be found on YouTube");
-
+                 
                  //Set the value to be empty
                  $scope.model.value = null;
+
+                 //Ensure flag is set to false
+                 isThisValid = false;
             }
+
+
+            //Get the form with Umbraco's helper of this $scope
+            //The form is wrapped just around this single prevalue editor
+            var form = angularHelper.getCurrentForm($scope);
+
+            //Inside the form we have our input field with the name/id of username
+            //Set this field to be valid or invalid based on our flag
+            form.username.$setValidity('YouTubeChannel', isThisValid);
+
+            //Debug
+            console.log("Form", form);
+            console.log("Form Username", form.username);
+            console.log("Is this Valid?", isThisValid);
 
         });     
         
