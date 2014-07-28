@@ -22,17 +22,11 @@
             "view": "~/App_Plugins/YouTube/views/prevalues/YouTube.orderby.html"
           },
           {
-            "description": "An optional mininum number of items to be selected",
-            "key": "min",
-            "label": "Minimum (Optional)",
+            "description": "An optional min & max number of items to be selected",
+            "key": "minmax",
+            "label": "Min & Max Items (Optional)",
             "view": "~/App_Plugins/YouTube/views/prevalues/YouTube.MinMax.html"
-          },
-          {
-            "description": "An optional maximum number of items to be selected",
-            "key": "max",
-            "label": "Maximum (Optional)",
-            "view": "~/App_Plugins/YouTube/views/prevalues/YouTube.MinMax.html"
-          },
+          },          
           {
             "description": "To help debug any issues this will display info in the JS console",
             "key": "debug",

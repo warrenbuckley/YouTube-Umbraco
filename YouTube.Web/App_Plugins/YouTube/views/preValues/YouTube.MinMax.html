@@ -1,11 +1,21 @@
 <div>
 	
-	<label>Enable?</label>
-	<input type="checkbox" ng-model="enabled" />
+	<label>Enable Min Items?</label>
+	<input type="checkbox" ng-model="enableMin" />
 
-	<div ng-if="enabled">
+	<div ng-if="enableMin">
 		<hr/>
-		<input type="number" ng-model="model.value" ng-required="enabled" ng-minlength="{{enabled ? 1 : 0}}" />
+		<input type="number" ng-model="minValue" ng-required="enableMin" min="{{enableMin ? 1 : 0}}" />
+	</div>
+
+	<hr/>
+
+	<label>Enable Max Items?</label>
+	<input type="checkbox" ng-model="enableMax" />
+
+	<div ng-if="enableMax">
+		<hr/>
+		<input type="number" ng-model="maxValue" ng-required="enableMax" min="{{ minValue > 0 ? minValue : 1 }}" />
 	</div>
 
 </div>
