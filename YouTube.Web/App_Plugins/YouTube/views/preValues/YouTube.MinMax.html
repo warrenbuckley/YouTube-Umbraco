@@ -1,0 +1,11 @@
+<div>
+	
+	<label>Enable?</label>
+	<input type="checkbox" ng-model="enabled" />
+
+	<div ng-if="enabled">
+		<hr/>
+		<input type="number" ng-model="model.value" ng-required="enabled" ng-minlength="{{enabled ? 1 : 0}}" />
+	</div>
+
+</div>
