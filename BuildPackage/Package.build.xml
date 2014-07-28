@@ -13,36 +13,35 @@
   <Import Project="$(MSBuildNugetTasksPath)\MSBuild.NuGet.Tasks.Targets" />
 
 	<!-- PROPERTIES -->
+  <PropertyGroup>
+    <BaseVersionMajor>1</BaseVersionMajor>
+    <BaseVersionMinor>0</BaseVersionMinor>
+    <BaseVersionPatch>0</BaseVersionPatch>
+    <BaseVersionSuffix>-beta</BaseVersionSuffix>
+    <BaseUmbracoVersion>7.1.4</BaseUmbracoVersion>
+  </PropertyGroup>
+
+  <!-- PROPERTIES -->
   <Choose>
-    <When Condition="$(BuildCounter) != ''">
+    <When Condition="$(APPVEYOR_BUILD_NUMBER) != '' And $(APPVEYOR_REPO_BRANCH) != 'Release' ">
       <PropertyGroup>
-        <VersionMajor>1</VersionMajor>
-        <VersionMinor>0</VersionMinor>
-        <VersionPatch>0</VersionPatch>
-        <VersionSuffix>-build$(BuildCounter)</VersionSuffix>
-        <UmbracoVersion>7.1.4</UmbracoVersion>
+        <VersionMajor>$(BaseVersionMajor)</VersionMajor>
+        <VersionMinor>$(BaseVersionMinor)</VersionMinor>
+        <VersionPatch>$(BaseVersionPatch)</VersionPatch>
+        <VersionSuffix>-build$(APPVEYOR_BUILD_NUMBER)</VersionSuffix>
+        <UmbracoVersion>$(BaseUmbracoVersion)</UmbracoVersion>
       </PropertyGroup>
     </When>
-    <When Condition="$(APPVEYOR_BUILD_NUMBER) != ''">
-      <PropertyGroup>
-        <VersionMajor>1</VersionMajor>
-        <VersionMinor>0</VersionMinor>
-        <VersionPatch>0</VersionPatch>
-        <VersionSuffix>-build$(APPVEYOR_BUILD_NUMBER)</VersionSuffix>
-        <UmbracoVersion>7.1.4</UmbracoVersion>
-      </PropertyGroup>
-    </When>  
     <Otherwise>
       <PropertyGroup>
-        <VersionMajor>1</VersionMajor>
-        <VersionMinor>0</VersionMinor>
-        <VersionPatch>0</VersionPatch>
-        <VersionSuffix>-beta</VersionSuffix>
-        <UmbracoVersion>7.1.4</UmbracoVersion>
+        <VersionMajor>$(BaseVersionMajor)</VersionMajor>
+        <VersionMinor>$(BaseVersionMinor)</VersionMinor>
+        <VersionPatch>$(BaseVersionPatch)</VersionPatch>
+        <VersionSuffix>$(BaseVersionSuffix)</VersionSuffix>
+        <UmbracoVersion>$(BaseUmbracoVersion)</UmbracoVersion>
       </PropertyGroup>
     </Otherwise>
   </Choose>
-
 
 	<PropertyGroup>
 		<RootDir>$(MSBuildProjectDirectory)\..</RootDir>

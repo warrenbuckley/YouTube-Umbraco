@@ -1,4 +1,5 @@
-cd YouTube.PropertyEditors\YouTube\
+ECHO APPVEYOR_REPO_BRANCH: %APPVEYOR_REPO_BRANCH%
+cd ..\YouTube.PropertyEditors\YouTube\
 Call npm install
 Call node -e "require('grunt').tasks(['default']);"
 Call ..\..\.nuget\nuget.exe restore ..\..\YouTube.sln
