@@ -1,7 +1,7 @@
 angular.module('umbraco.resources')
 .factory('YouTubeResource',
-['$q', '$http',
-function ($q, $http) {
+['$http',
+function ($http) {
 
     //Base API URL
     var apiUrl = Umbraco.Sys.ServerVariables["YouTube"]["ApiUrl"];
