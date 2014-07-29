@@ -1,4 +1,7 @@
-angular.module("umbraco").controller("YouTube.channel.controller", function ($scope, YouTubeResource, notificationsService, angularHelper, serverValidationManager) {
+angular.module("umbraco")
+.controller("YouTube.channel.controller",
+['$scope', 'YouTubeResource', 'notificationsService', 'angularHelper', 'serverValidationManager',
+function ($scope, YouTubeResource, notificationsService, angularHelper, serverValidationManager) {
 
     function debug(message, object){
         //Check we have the console object
@@ -151,4 +154,4 @@ angular.module("umbraco").controller("YouTube.channel.controller", function ($sc
             currentForm.selectedVideosError.$setValidity('YouTubeChannel', true);
         }
     });
-});
+}]);
