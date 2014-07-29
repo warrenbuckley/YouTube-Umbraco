@@ -26,12 +26,24 @@
             "key": "minmax",
             "label": "Min & Max Items (Optional)",
             "view": "~/App_Plugins/YouTube/views/prevalues/YouTube.MinMax.html"
-          },          
+          },
           {
             "description": "To help debug any issues this will display info in the JS console",
             "key": "debug",
             "label": "Enable Debug",
             "view": "boolean"
+          },
+          {
+            "description": "Minimum selected videos",
+            "key": "minVideos",
+            "label": "Minimum Required",
+            "view": "number"
+          },
+          {
+            "description": "Maximum selected videos",
+            "key": "maxVideos",
+            "label": "Maximum Allowed",
+            "view": "number"
           }
         ]
       }
