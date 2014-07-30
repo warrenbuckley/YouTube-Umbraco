@@ -1,4 +1,7 @@
-angular.module("umbraco").controller("YouTube.channel.controller", function ($scope, YouTubeResource) {
+angular.module("umbraco")
+.controller("YouTube.channel.controller",
+['$scope', 'YouTubeResource', 'notificationsService', 'angularHelper', 'serverValidationManager',
+function ($scope, YouTubeResource, notificationsService, angularHelper, serverValidationManager) {
 
     function debug(message, object){
         //Check we have the console object
@@ -7,7 +10,7 @@ angular.module("umbraco").controller("YouTube.channel.controller", function ($sc
             //Now let's check if user set the debug flag on property editor to true
             //In this case a string not a real number of 1 or 0
             var isDebug = $scope.model.config.debug;
-            
+
             if(isDebug === "1"){
                 console.log(message, object);
             }
@@ -43,29 +46,36 @@ angular.module("umbraco").controller("YouTube.channel.controller", function ($sc
     });
 
     $scope.toggleVideo = function(video) {
+        var maxItems = parseInt($scope.model.config.maxVideos, 10);
 
-        //Create new JSON object as we don't need full object passed in here        
+        //Create new JSON object as we don't need full object passed in here
         var newVideoObject = {
             "id": video.id.videoId,
             "title": video.snippet.title
         };
-        
+
         //See if we can find the item or not in the array
         var tryFindItem = $scope.model.value.map(function (e) { return e.id; }).indexOf(newVideoObject.id);
-        
+
         //Check to add or remove item
         if (tryFindItem !== -1) {
             //Found the item in the array
             //Lets remove it at the index we found it at & remove the single item only
             $scope.model.value.splice(tryFindItem, 1);
         } else {
+
+            if (maxItems && $scope.model.value.length === maxItems) {
+                notificationsService.error('Maximum items reached', 'You cannot add more than ' + maxItems + ' videos.');
+                return;
+            }
+
             //Item does not exist in the array, let's add it
             $scope.model.value.push(newVideoObject);
         }
     };
 
     $scope.getPagedVideos = function(pagedToken) {
-        
+
         //Check we have a paged token
         //May be at beginning or end of list
         //If so don't do anything
@@ -78,7 +88,7 @@ angular.module("umbraco").controller("YouTube.channel.controller", function ($sc
     };
 
     $scope.getVideos = function (pagedToken) {
-       
+
         //Set Has Videos to false - until we get some back from API call
         $scope.hasVideos = false;
 
@@ -121,4 +131,27 @@ angular.module("umbraco").controller("YouTube.channel.controller", function ($sc
             return false;
         }
     };
-});
+
+    $scope.$on('formSubmitting', function() {
+        var minItems, maxItems, currentForm, errorMessage, videoLabel;
+
+        minItems = parseInt($scope.model.config.minVideos, 10);
+        maxItems = parseInt($scope.model.config.maxVideos, 10);
+        currentForm = angularHelper.getCurrentForm($scope);
+
+        if (minItems && $scope.model.value.length < minItems) {
+            videoLabel = minItems > 1 ? ' videos' : ' video';
+            errorMessage = 'You need to add at least ' + minItems + videoLabel;
+
+            if (maxItems) {
+                errorMessage += ' and maximum of ' + maxItems;
+            }
+
+            currentForm.selectedVideosError.$setValidity('YouTubeChannel', false);
+            serverValidationManager.addPropertyError($scope.model.alias, 'selectedVideosError', errorMessage + '.');
+        } else {
+            serverValidationManager.reset();
+            currentForm.selectedVideosError.$setValidity('YouTubeChannel', true);
+        }
+    });
+}]);

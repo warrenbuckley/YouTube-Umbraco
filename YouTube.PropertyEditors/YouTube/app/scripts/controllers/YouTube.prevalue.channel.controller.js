@@ -1,5 +1,8 @@
-angular.module("umbraco").controller("YouTube.prevalue.channel.controller", function ($scope, YouTubeResource, notificationsService, angularHelper, serverValidationManager) {
-   
+angular.module("umbraco")
+.controller("YouTube.prevalue.channel.controller",
+['$scope', 'YouTubeResource', 'notificationsService', 'angularHelper', 'serverValidationManager',
+function ($scope, YouTubeResource, notificationsService, angularHelper, serverValidationManager) {
+
 
     //Set to be default empty object or value saved if we have it
     $scope.model.value = $scope.model.value ? $scope.model.value : null;
@@ -25,7 +28,7 @@ angular.module("umbraco").controller("YouTube.prevalue.channel.controller", func
 
         //Query this via our resource
         YouTubeResource.queryUsernameForChannel(username).then(function(response) {
-            
+
             //Debug info
             //console.log("Value back from query API", response);
             //console.log("Items length", response.data.items.length);
@@ -36,9 +39,9 @@ angular.module("umbraco").controller("YouTube.prevalue.channel.controller", func
                 //Data we are interested is in
                 //response.data.items[0]
                 var channel = response.data.items[0];
-                
 
-                //Create new JSON object as we don't need full object from Google's API response     
+
+                //Create new JSON object as we don't need full object from Google's API response
                 var newChannelObject = {
                     "querriedUsername": username,
                     "channelId": channel.id,
@@ -47,7 +50,7 @@ angular.module("umbraco").controller("YouTube.prevalue.channel.controller", func
                     "thumbnails": channel.snippet.thumbnails,
                     "statistics": channel.statistics
                 };
-            
+
                 //Set the value to be our new JSON object
                 $scope.model.value = newChannelObject;
 
@@ -57,7 +60,7 @@ angular.module("umbraco").controller("YouTube.prevalue.channel.controller", func
             else {
                 //Fire a notification - saying user can not be found
                 //notificationsService.error("YouTube User Lookup","The channel/user '" + username + "' could not be found on YouTube");
-                 
+
                 //Set the value to be empty
                 $scope.model.value = null;
 
@@ -76,21 +79,21 @@ angular.module("umbraco").controller("YouTube.prevalue.channel.controller", func
 
             if(!isThisValid){
                 //Property Alias, Field name (ID/name of text box), Error Message
-                serverValidationManager.addPropertyError($scope.model.alias, "username", "The channel/user '" + username + "' could not be found on YouTube");    
+                serverValidationManager.addPropertyError($scope.model.alias, "username", "The channel/user '" + username + "' could not be found on YouTube");
             }
             else {
                 //Property Alias, Field name (ID/name of text box)
                 serverValidationManager.removePropertyError($scope.model.alias, "username");
             }
-            
+
 
             //Debug
             //console.log("Form", form);
             //console.log("Form Username", form.username);
             //console.log("Is this Valid?", isThisValid);
 
-        });     
-        
+        });
+
     };
 
-});
+}]);
