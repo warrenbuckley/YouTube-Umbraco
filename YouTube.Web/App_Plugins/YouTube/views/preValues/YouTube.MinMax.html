@@ -1,7 +1,7 @@
 <div ng-controller="YouTube.prevalue.minmax.controller">
 	
 	<label>Enable Min Items?</label>
-	<input type="checkbox" ng-model="model.value.enableMin" ng-change="clearValue('minValue')"/>
+	<input type="checkbox" ng-model="model.value.enableMin" ng-change="clearMinValue()"/>
 
 	<div ng-show="model.value.enableMin">
 		<hr/>
@@ -19,7 +19,7 @@
 	<hr/>
 
 	<label>Enable Max Items?</label>
-	<input type="checkbox" ng-model="model.value.enableMax" ng-change="clearValue('maxValue')"/>
+	<input type="checkbox" ng-model="model.value.enableMax" ng-change="clearMaxValue()"/>
 
 	<div ng-show="model.value.enableMax">
 		<hr/>

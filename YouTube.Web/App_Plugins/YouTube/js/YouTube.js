@@ -234,24 +234,23 @@ angular.module("umbraco").controller("YouTube.prevalue.minmax.controller", funct
 
 
     //This fires when a checkbox is clicked/toggled
-    $scope.clearValue = function(fieldToClear) {
+    $scope.clearMinValue = function() {
 
-        //TODO: When checkbox clicked check if it is false/not selected
-        //If false (unchecked) then remove value on fieldToClear
-        console.log("Scope Model Value", $scope.model.value);
+        //If the enabled min is not checked/true
+        if(!$scope.model.value.enableMin){
+            //Then clear out the value in the textbox for min
+            $scope.model.value.minValue = null;
+        }
+    };
 
-        console.log("Item that was clicked? (this)", this);
+    //This fires when a checkbox is clicked/toggled
+    $scope.clearMaxValue = function() {
 
-        //Field may be pristine and be undefinied/null
-        //Field to Clear is not the name of the field but the value :-(
-        console.log("Function clearValue", fieldToClear);
-
-        console.log("Field To Clear before null", $scope.model.fieldToClear);
-
-        $scope.model.fieldToClear = null;
-
-        console.log("Field To Clear after null", $scope.model.fieldToClear);
-
+        //If the enabled max is not checked/true
+        if(!$scope.model.value.enableMax){
+            //Then clear out the value in the textbox for max
+            $scope.model.value.maxValue = null;
+        }
     };
 
 });
