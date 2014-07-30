@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
-        <id>YouTube</id>
+        <id>YouTube.Umbraco</id>
         <version>0.0.0</version>
-        <title>YouTube</title>
-        <authors>Warren Buckley</authors>
-        <owners>Warren Buckley</owners>
+        <title>YouTube for Umbraco</title>
+        <authors>Warren Buckley, Jeavon Leopold</authors>
+        <owners>Warren Buckley, Jeavon Leopold</owners>
         <projectUrl>https://github.com/warrenbuckley/YouTube-Umbraco</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>A YouTube video picker for Umbraco</description>

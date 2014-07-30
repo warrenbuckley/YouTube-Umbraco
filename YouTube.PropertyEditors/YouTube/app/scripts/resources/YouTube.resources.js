@@ -1,4 +1,7 @@
-angular.module('umbraco.resources').factory('YouTubeResource', function ($q, $http) {
+angular.module('umbraco.resources')
+.factory('YouTubeResource',
+['$http',
+function ($http) {
 
     //Base API URL
     var apiUrl = Umbraco.Sys.ServerVariables["YouTube"]["ApiUrl"];
@@ -15,4 +18,4 @@ angular.module('umbraco.resources').factory('YouTubeResource', function ($q, $ht
         }
 
     };
-});
+}]);

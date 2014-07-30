@@ -2,7 +2,7 @@
 <umbPackage>
 	<info>
 		<package>
-			<name>YouTube</name>
+			<name>YouTube for Umbraco</name>
 			<version>0.0.0</version>
       <license url="http://opensource.org/licenses/MIT">MIT License</license>
 			<url>https://github.com/warrenbuckley/YouTube-Umbraco</url>
@@ -13,7 +13,7 @@
 			</requirements>
 		</package>
 		<author>
-      <name>Warren Buckley</name>
+      <name>Warren Buckley and Jeavon Leopold</name>
       <website>http://creativewebspecialist.co.uk</website>
 		</author>
 		<readme>
