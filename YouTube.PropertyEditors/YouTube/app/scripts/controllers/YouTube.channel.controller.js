@@ -165,7 +165,7 @@ angular.module("umbraco").controller("YouTube.channel.controller", function ($sc
             if($scope.model.value.length+1 > maxItems){                    
 
                 //The hidden field in the view set its validity
-                currentForm.maxerror.$setValidity('youtubemax', false);
+                //currentForm.maxerror.$setValidity('youtubemax', false);
 
                 //Not Valid - False
                 return false;
@@ -173,7 +173,7 @@ angular.module("umbraco").controller("YouTube.channel.controller", function ($sc
             else {
                 //The hidden field in the view set its validity
                 //It's valid & OK
-                currentForm.maxerror.$setValidity('youtubemax', true);
+                //currentForm.maxerror.$setValidity('youtubemax', true);
 
                 //It is valid - True
                 return true;
