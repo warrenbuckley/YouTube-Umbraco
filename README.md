@@ -16,9 +16,16 @@ Order the videos by:
 * Views
 * Ratings
 
-####Channel ID
-You can find your YouTube channel ID by browsing the YouTube site at the following page:
-http://www.youtube.com/account_advanced
+####Channel/Username
+Enter the usename of channel username you wish to display videos from in the picker. Press the button to validate & check the channel is correct.
+
+####Min & Max
+You can enable a minimum number of items to be selected along with a maximum number of items. You can enable both values or just set a minimum or a maximum. The choice is yours.
+
+####Debug
+Enable this checkbox to show debug informatiom, JSON objects & other debug information in the browser console along with the JSON object we save to Umbraco is shown.
+
+
 
 ###Package File Contents
 ####DLLs in the Bin Folder
@@ -41,6 +48,8 @@ http://www.youtube.com/account_advanced
 * App_Plugins/YouTube/package.manifest
 * App_Plugins/YouTube/css/YouTube.css
 * App_Plugins/YouTube/js/YouTube.js
+* App_Plugins/YouTube/views/preValues/YouTube.ChannelInfo.html
+* App_Plugins/YouTube/views/preValues/YouTube.MinMax.html
 * App_Plugins/YouTube/views/preValues/YouTube.OrderBy.html
 * App_Plugins/YouTube/views/propertyEditors/YouTube.Channel.html
 
