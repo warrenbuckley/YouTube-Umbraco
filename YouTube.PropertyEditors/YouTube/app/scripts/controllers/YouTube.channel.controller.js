@@ -1,7 +1,4 @@
-angular.module("umbraco")
-.controller("YouTube.channel.controller",
-['$scope', 'YouTubeResource', 'notificationsService', 'angularHelper', 'serverValidationManager',
-function ($scope, YouTubeResource, notificationsService, angularHelper, serverValidationManager) {
+angular.module("umbraco").controller("YouTube.channel.controller", function ($scope, YouTubeResource, notificationsService, angularHelper, serverValidationManager) {
 
     function debug(message, object){
         //Check we have the console object
@@ -22,6 +19,8 @@ function ($scope, YouTubeResource, notificationsService, angularHelper, serverVa
 
     //Debug message
     debug("Scope Model on init", $scope.model);
+
+    console.log("Scope Model Config minmax", $scope.model.config.minmax);
 
     //Set to be default empty array or value saved
     $scope.model.value = $scope.model.value ? $scope.model.value : [];
@@ -46,7 +45,6 @@ function ($scope, YouTubeResource, notificationsService, angularHelper, serverVa
     });
 
     $scope.toggleVideo = function(video) {
-        var maxItems = parseInt($scope.model.config.maxVideos, 10);
 
         //Create new JSON object as we don't need full object passed in here
         var newVideoObject = {
@@ -57,19 +55,29 @@ function ($scope, YouTubeResource, notificationsService, angularHelper, serverVa
         //See if we can find the item or not in the array
         var tryFindItem = $scope.model.value.map(function (e) { return e.id; }).indexOf(newVideoObject.id);
 
+        //Check validity of min & max items
+        var minValid = isMinValid();
+        var maxValid = isMaxValid();
+
         //Check to add or remove item
         if (tryFindItem !== -1) {
+            
             //Found the item in the array
+
             //Lets remove it at the index we found it at & remove the single item only
             $scope.model.value.splice(tryFindItem, 1);
-        } else {
 
-            if (maxItems && $scope.model.value.length === maxItems) {
-                notificationsService.error('Maximum items reached', 'You cannot add more than ' + maxItems + ' videos.');
+        }
+        else {
+
+            //Adding item to the collection            
+            if(!maxValid){
+                //If Max is NOT Valid
+                //Return & stop so we don't add the item
                 return;
             }
 
-            //Item does not exist in the array, let's add it
+            //Item does not exist in the array, let's add it & all OK with validation :)
             $scope.model.value.push(newVideoObject);
         }
     };
@@ -132,26 +140,82 @@ function ($scope, YouTubeResource, notificationsService, angularHelper, serverVa
         }
     };
 
+    //When the Node is being saved with this editor on
     $scope.$on('formSubmitting', function() {
-        var minItems, maxItems, currentForm, errorMessage, videoLabel;
 
-        minItems = parseInt($scope.model.config.minVideos, 10);
-        maxItems = parseInt($scope.model.config.maxVideos, 10);
-        currentForm = angularHelper.getCurrentForm($scope);
+        //Validation checks
+        //Call our functions to set the form to be invalid if needed
+        isMinValid();
+        isMaxValid();        
 
-        if (minItems && $scope.model.value.length < minItems) {
-            videoLabel = minItems > 1 ? ' videos' : ' video';
-            errorMessage = 'You need to add at least ' + minItems + videoLabel;
-
-            if (maxItems) {
-                errorMessage += ' and maximum of ' + maxItems;
-            }
-
-            currentForm.selectedVideosError.$setValidity('YouTubeChannel', false);
-            serverValidationManager.addPropertyError($scope.model.alias, 'selectedVideosError', errorMessage + '.');
-        } else {
-            serverValidationManager.reset();
-            currentForm.selectedVideosError.$setValidity('YouTubeChannel', true);
-        }
     });
-}]);
+
+
+    function isMaxValid() {
+        var isMaxEnabled = $scope.model.config.minmax.enableMax;
+
+        if(isMaxEnabled){
+            //If it's enabled let's check to see if we reached total items
+            var maxItems = parseInt($scope.model.config.minmax.maxValue);
+
+            //Get the current form
+            var currentForm = angularHelper.getCurrentForm($scope);
+            
+            if($scope.model.value.length > maxItems){                    
+
+                //The hidden field in the view set its validity
+                currentForm.maxerror.$setValidity('youtubemax', false);
+
+                //Not Valid - False
+                return false;
+            }
+            else {
+                //The hidden field in the view set its validity
+                //It's valid & OK
+                currentForm.maxerror.$setValidity('youtubemax', true);
+
+                //It is valid - True
+                return true;
+            }
+        }
+
+        //Flag not enabled to check for Max items, so always valid
+        return true;
+    }
+
+    function isMinValid() {
+        //Is Min Enabled?
+        var isMinEnabled = $scope.model.config.minmax.enableMin;
+
+        if(isMinEnabled){
+            //If it's enabled let's check to see if we reached total items
+            var minItems = parseInt($scope.model.config.minmax.minValue);
+
+            //Get the current form
+            var currentForm = angularHelper.getCurrentForm($scope);
+
+            //If number of items we have is less than minItems we want
+            if($scope.model.value.length < minItems){
+
+                //The hidden field in the view set its validity
+                currentForm.minerror.$setValidity('youtubemin', false);
+
+                //Not Valid - False
+                return false;
+
+            }
+            else {
+                //The hidden field in the view set its validity
+                //All is OK (Have more or equal to minimum number)
+                currentForm.minerror.$setValidity('youtubemin', true);
+
+                //It is valid - True
+                return true;
+            }
+        }
+
+        //Flag not enabled to check for Min items, so always valid
+        return true;
+    }
+
+});

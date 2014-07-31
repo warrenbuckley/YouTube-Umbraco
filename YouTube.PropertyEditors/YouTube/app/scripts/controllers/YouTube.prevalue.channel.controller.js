@@ -1,7 +1,4 @@
-angular.module("umbraco")
-.controller("YouTube.prevalue.channel.controller",
-['$scope', 'YouTubeResource', 'notificationsService', 'angularHelper', 'serverValidationManager',
-function ($scope, YouTubeResource, notificationsService, angularHelper, serverValidationManager) {
+angular.module("umbraco").controller("YouTube.prevalue.channel.controller", function ($scope, YouTubeResource, notificationsService, angularHelper, serverValidationManager) {
 
 
     //Set to be default empty object or value saved if we have it
@@ -96,4 +93,4 @@ function ($scope, YouTubeResource, notificationsService, angularHelper, serverVa
 
     };
 
-}]);
+});
