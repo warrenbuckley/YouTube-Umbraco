@@ -35,3 +35,10 @@
 .YouTubeChannel .videos img {
   max-width: 100%;
 }
+.YouTubeChannel li a:hover .hover-hide,
+.YouTubeChannel li a .hover-show {
+  display: none;
+}
+.YouTubeChannel li a:hover .hover-show {
+  display: inline-block;
+}

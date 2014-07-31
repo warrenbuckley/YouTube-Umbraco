@@ -13,6 +13,14 @@
         <div class="help-inline" val-msg-for="maxerror" val-toggle-msg="youtubemax">
             You can not select more than a maximum number of {{ model.config.minmax.maxValue }}
         </div>
+
+        <div class="help-inline" ng-show="propertyForm.minerror.$error.youtubemin">
+            You need to select a minimum number of {{ model.config.minmax.minValue }}
+        </div>
+
+        <div class="help-inline" ng-show="propertyForm.maxerror.$error.youtubemax">
+            You can not select more than a maximum number of {{ model.config.minmax.maxValue }}
+        </div>
         
 
         <!-- Search -->
@@ -52,12 +60,15 @@
         <!-- Saved Videos -->
         <div>
             <h4>Selected Videos</h4>
-
-            <ul class="unstyled" ui-sortable ng-model="model.value">
+            <ul class="unstyled list-icons" ui-sortable ng-model="model.value">
                 <li ng-repeat="selectedItem in model.value">
                     <i class="icon icon-navigation handle"></i>
-                    <a href="#" prevent-default ng-click="removeVideo($index)"><i class="icon icon-delete red"></i></a>
-                    {{selectedItem.title}}
+                    <a href="#" prevent-default ng-click="removeVideo($index)">
+                        <i class="icon icon-delete red hover-show"></i>
+                        <i class="icon icon-video hover-hide"></i> 
+                        {{selectedItem.title}}
+                    </a>
+                    
                 </li>
             </ul>
 

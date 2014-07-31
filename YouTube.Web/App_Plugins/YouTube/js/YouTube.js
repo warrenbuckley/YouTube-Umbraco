@@ -70,13 +70,7 @@ angular.module("umbraco").controller("YouTube.channel.controller", function ($sc
         }
         else {
 
-            //Adding item to the collection            
-            if(!maxValid){
-                //If Max is NOT Valid
-                //Return & stop so we don't add the item
-                return;
-            }
-
+            //Adding item to the collection
             //Item does not exist in the array, let's add it & all OK with validation :)
             $scope.model.value.push(newVideoObject);
         }
@@ -161,7 +155,8 @@ angular.module("umbraco").controller("YouTube.channel.controller", function ($sc
             //Get the current form
             var currentForm = angularHelper.getCurrentForm($scope);
             
-            if($scope.model.value.length > maxItems){                    
+			//JS arrays are zero indexed so need to add 1 to compare with maxItems
+            if($scope.model.value.length+1 > maxItems){                    
 
                 //The hidden field in the view set its validity
                 currentForm.maxerror.$setValidity('youtubemax', false);
