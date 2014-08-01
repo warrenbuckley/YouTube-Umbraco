@@ -5,12 +5,12 @@
         <input type="hidden" name="maxerror" ng-model="errors" />
 
 
-        <!-- Inline error messages that will show or hide (but only when save clicked) -->
-        <div class="help-inline" val-msg-for="minerror" val-toggle-msg="youtubemin">
+        <!-- Inline error messages that will show or hide -->
+        <div class="alert alert-error" ng-show="propertyForm.minerror.$error.youtubemin">
             You need to add at least {{model.config.minmax.minValue-model.value.length}} items
         </div>
 
-        <div class="help-inline" val-msg-for="maxerror" val-toggle-msg="youtubemax">
+        <div class="alert alert-error" ng-show="propertyForm.maxerror.$error.youtubemax">
             You can only have {{model.config.minmax.maxValue}} items selected
         </div>
 
