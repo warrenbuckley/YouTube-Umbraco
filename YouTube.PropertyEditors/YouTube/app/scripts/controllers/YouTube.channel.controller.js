@@ -134,7 +134,25 @@ angular.module("umbraco").controller("YouTube.channel.controller", function ($sc
         }
     };
 
+
+    //Watch our $scope.model.value of items
+    //When items get added or removed - validate...
+    $scope.$watch(function() {
+        return $scope.model.value;
+    }, function(newVal, oldVal) {
+
+        console.log("Old Value", oldVal);
+        console.log("New Value", newVal);
+
+        //Call our validation methods
+        isMinValid();
+        isMaxValid();
+
+    }, true);
+
+
     //When the Node is being saved with this editor on
+    /*
     $scope.$on('formSubmitting', function() {
 
         //Validation checks
@@ -143,7 +161,7 @@ angular.module("umbraco").controller("YouTube.channel.controller", function ($sc
         isMaxValid();        
 
     });
-
+    */
 
     function isMaxValid() {
         var isMaxEnabled = $scope.model.config.minmax.enableMax;
@@ -155,8 +173,7 @@ angular.module("umbraco").controller("YouTube.channel.controller", function ($sc
             //Get the current form
             var currentForm = angularHelper.getCurrentForm($scope);
             
-			//JS arrays are zero indexed so need to add 1 to compare with maxItems
-            if($scope.model.value.length+1 > maxItems){                    
+            if($scope.model.value.length > maxItems){                    
 
                 //The hidden field in the view set its validity
                 currentForm.maxerror.$setValidity('youtubemax', false);
