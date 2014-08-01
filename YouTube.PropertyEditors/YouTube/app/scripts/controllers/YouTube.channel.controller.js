@@ -1,4 +1,4 @@
-angular.module("umbraco").controller("YouTube.channel.controller", function ($scope, YouTubeResource, notificationsService, angularHelper, serverValidationManager) {
+angular.module("umbraco").controller("YouTube.channel.controller", function ($scope, YouTubeResource, angularHelper) {
 
     function debug(message, object){
         //Check we have the console object
