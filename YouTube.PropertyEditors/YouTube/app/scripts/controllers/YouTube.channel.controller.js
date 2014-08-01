@@ -20,7 +20,7 @@ angular.module("umbraco").controller("YouTube.channel.controller", function ($sc
     //Debug message
     debug("Scope Model on init", $scope.model);
 
-    console.log("Scope Model Config minmax", $scope.model.config.minmax);
+    debug("Scope Model Config minmax", $scope.model.config.minmax);
 
     //Set to be default empty array or value saved
     $scope.model.value = $scope.model.value ? $scope.model.value : [];
@@ -115,7 +115,7 @@ angular.module("umbraco").controller("YouTube.channel.controller", function ($sc
 
 
     $scope.removeVideo = function(videoIndex) {
-        console.log(videoIndex);
+        debug("Remove video at index",videoIndex);
 
         //Lets remove it at the index we pass in & remove the single item only
         $scope.model.value.splice(videoIndex, 1);
@@ -141,27 +141,14 @@ angular.module("umbraco").controller("YouTube.channel.controller", function ($sc
         return $scope.model.value;
     }, function(newVal, oldVal) {
 
-        console.log("Old Value", oldVal);
-        console.log("New Value", newVal);
+        debug("Old Value", oldVal);
+        debug("New Value", newVal);
 
         //Call our validation methods
         isMinValid();
         isMaxValid();
 
     }, true);
-
-
-    //When the Node is being saved with this editor on
-    /*
-    $scope.$on('formSubmitting', function() {
-
-        //Validation checks
-        //Call our functions to set the form to be invalid if needed
-        isMinValid();
-        isMaxValid();        
-
-    });
-    */
 
     function isMaxValid() {
         var isMaxEnabled = $scope.model.config.minmax.enableMax;

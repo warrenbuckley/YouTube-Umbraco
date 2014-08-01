@@ -13,14 +13,6 @@
         <div class="help-inline" val-msg-for="maxerror" val-toggle-msg="youtubemax">
             You can only have {{model.config.minmax.maxValue}} items selected
         </div>
-        
-        <div class="help-inline" ng-show="propertyForm.minerror.$error.youtubemin">
-            You need to add at least {{model.config.minmax.minValue-model.value.length}} items
-        </div>
-
-        <div class="help-inline" ng-show="propertyForm.maxerror.$error.youtubemax">
-            You can only have {{model.config.minmax.maxValue}} items selected
-        </div>
 
         <!-- Search -->
         <div>
