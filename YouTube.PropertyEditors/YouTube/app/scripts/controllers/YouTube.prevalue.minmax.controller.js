@@ -1,17 +1,15 @@
-angular.module("umbraco").controller("YouTube.prevalue.minmax.controller", function ($scope, YouTubeResource, notificationsService, angularHelper, serverValidationManager) {
-   
-    console.log("Scope Model on init", $scope.model);
+angular.module("umbraco").controller("YouTube.prevalue.minmax.controller", function ($scope) {
 
+    //Default object if no value saved
+    var defaultObject = {
+        "enableMin": false,
+        "minValue": null,
+        "enableMax": false,
+        "maxValue": null
+    };
 
     //Set to be default empty object or value saved if we have it
-    $scope.model.value = $scope.model.value ? $scope.model.value : null;
-
-    if($scope.model.value){
-        //Have a value - so lets assume our JSON object is all good
-        //Debug message
-        console.log("Scope Model Value on init", $scope.model.value);
-    }
-
+    $scope.model.value = $scope.model.value ? $scope.model.value : defaultObject;
 
     //This fires when a checkbox is clicked/toggled
     $scope.clearMinValue = function() {
