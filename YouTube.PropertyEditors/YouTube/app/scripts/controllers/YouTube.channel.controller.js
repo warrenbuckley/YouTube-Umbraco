@@ -15,7 +15,8 @@ angular.module("umbraco").controller("YouTube.channel.controller", function ($sc
     }
 
     //Set Has Videos to false - until we get some back from API call
-    $scope.hasVideos = false;
+    $scope.hasVideos        = false;
+    $scope.notFoundVideos   = false;
 
     //Debug message
     debug("Scope Model on init", $scope.model);
@@ -39,7 +40,12 @@ angular.module("umbraco").controller("YouTube.channel.controller", function ($sc
             $scope.videos = response.data;
 
             //Now we can show the grid of videos
-            $scope.hasVideos = true;
+            $scope.hasVideos        = true;
+            $scope.notFoundVideos   = false;
+        }
+        else {
+            //No videos - may be searching & found no results
+            $scope.notFoundVideos   = true;
         }
 
     });
@@ -107,7 +113,12 @@ angular.module("umbraco").controller("YouTube.channel.controller", function ($sc
                 $scope.videos = response.data;
 
                 //Now we can show the grid of videos
-                $scope.hasVideos = true;
+                $scope.hasVideos        = true;
+                $scope.notFoundVideos   = false;
+            }
+            else {
+                //No videos - may be searching & found no results
+                $scope.notFoundVideos   = true;
             }
 
         });

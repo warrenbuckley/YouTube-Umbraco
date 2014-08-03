@@ -13,7 +13,7 @@
             "description": "Enter the Channel to display videos only for that channel",
             "key": "channel",
             "label": "Channel ",
-            "view": "~/App_Plugins/YouTube/views/prevalues/YouTube.channelinfo.html"
+            "view": "~/App_Plugins/YouTube/views/prevalues/YouTube.channelinfo.html",
           },
           {
             "description": "Select the sort order for display videos",

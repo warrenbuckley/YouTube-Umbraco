@@ -23,8 +23,12 @@
         <hr />
 
         <!-- Loading Message - whilst getting videos -->
-        <div ng-show="!hasVideos">
+        <div ng-show="!hasVideos && !notFoundVideos">
             <h2>Loading</h2>
+        </div>
+
+        <div ng-show="notFoundVideos">
+            <h2>No Videos Found</h2>
         </div>
 
         <!-- Video Results -->
