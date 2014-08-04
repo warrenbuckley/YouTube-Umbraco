@@ -79,6 +79,16 @@ Or override the sort order and order by values on the video, such as view count
 }
 ```
 
+You can use the new extension method to use the YouTube player API options here: https://developers.google.com/youtube/youtube_player_demo
+```csharp
+@foreach (var typedVideo in Model.Content.GetPropertyValue<YouTube>("video"))
+{
+    <div>@Html.Raw(typedVideo.EmbedVideoWithOptions(modestBranding: true, theme: YouTubeExtensionMethods.Theme.light))</div>
+    @typedVideo.Snippet.Title<br />
+    @typedVideo.Statistics.ViewCount<br />
+    @typedVideo.Snippet.PublishedAt.Value.ToShortDateString()
+}
+
 
 ###Thanks
 Many thanks to Jeavon Leopold who helped collab on this project and creating the C# PropertyValue Convertor, which enables us to turn the simple JSON object we store in Umbraco of YouTube IDs and Video Titles and turn them into a collection of strongly typed YouTube video objects, allowing you to get much more detailed info on the video.
