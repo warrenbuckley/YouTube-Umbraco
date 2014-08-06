@@ -1,18 +1,26 @@
 <div ng-controller="YouTube.prevalue.channel.controller">
 	
-	<input type="text" name="username" id="username" ng-model="username" placeholder="uHangout" />
-	<a href="#" ng-click="queryChannel(username)" class="btn" prevent-default>Lookup Channel</a>
+	<input type="text" name="username" id="username" ng-model="model.value.querriedUsername" placeholder="uHangout" required />
+	<a href="#" ng-click="queryChannel(model.value.querriedUsername)" class="btn" prevent-default>Lookup Channel</a>
+
+    <div class="alert alert-error" ng-show="propertyForm.username.$error.required">
+            The channel/username is required
+    </div>
+
+    <div class="alert alert-error" ng-show="propertyForm.username.$error.YouTubeChannel">
+            The channel/username '{{ model.value.querriedUsername }}' could not be found
+    </div>
 
 	<hr/>
 
-	<div ng-if="model.value" class="row-fluid">
+	<div ng-if="model.value.youtube" class="row-fluid">
 		<div class="span2">
-			<img ng-src="{{ model.value.thumbnails.default.url }}" />
+			<img ng-src="{{ model.value.youtube.thumbnails.default.url }}" />
 		</div>
 		<div class="span10">
-			<h4>{{ model.value.title }}</h4>
-			<small>ID: {{ model.value.channelId }}</small>
-			<p>{{ model.value.description }}</p>
+			<h4>{{ model.value.youtube.title }}</h4>
+			<small>ID: {{ model.value.youtube.channelId }}</small>
+			<p>{{ model.value.youtube.description }}</p>
 		</div>
 	</div>
 </div>

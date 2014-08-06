@@ -28,7 +28,7 @@ angular.module("umbraco").controller("YouTube.channel.controller", function ($sc
 
 
     //Try & get videos for grid on Page Load
-    YouTubeResource.getChannelVideos($scope.model.config.channel.channelId, $scope.model.config.orderBy, null, null).then(function(response) {
+    YouTubeResource.getChannelVideos($scope.model.config.channel.youtube.channelId, $scope.model.config.orderBy, null, null).then(function(response) {
 
         //Debug message
         debug("Response Data on init", response.data);
@@ -101,7 +101,7 @@ angular.module("umbraco").controller("YouTube.channel.controller", function ($sc
         $scope.hasVideos = false;
 
         //Do new request to API
-        YouTubeResource.getChannelVideos($scope.model.config.channel.channelId, $scope.model.config.orderBy, $scope.searchQuery, pagedToken).then(function (response) {
+        YouTubeResource.getChannelVideos($scope.model.config.channel.youtube.channelId, $scope.model.config.orderBy, $scope.searchQuery, pagedToken).then(function (response) {
 
             //Debug message
             debug("Response Data from GetVideos()", response.data);

@@ -28,7 +28,7 @@ angular.module("umbraco").controller("YouTube.channel.controller", function ($sc
 
 
     //Try & get videos for grid on Page Load
-    YouTubeResource.getChannelVideos($scope.model.config.channel.channelId, $scope.model.config.orderBy, null, null).then(function(response) {
+    YouTubeResource.getChannelVideos($scope.model.config.channel.youtube.channelId, $scope.model.config.orderBy, null, null).then(function(response) {
 
         //Debug message
         debug("Response Data on init", response.data);
@@ -101,7 +101,7 @@ angular.module("umbraco").controller("YouTube.channel.controller", function ($sc
         $scope.hasVideos = false;
 
         //Do new request to API
-        YouTubeResource.getChannelVideos($scope.model.config.channel.channelId, $scope.model.config.orderBy, $scope.searchQuery, pagedToken).then(function (response) {
+        YouTubeResource.getChannelVideos($scope.model.config.channel.youtube.channelId, $scope.model.config.orderBy, $scope.searchQuery, pagedToken).then(function (response) {
 
             //Debug message
             debug("Response Data from GetVideos()", response.data);
@@ -230,7 +230,7 @@ angular.module("umbraco").controller("YouTube.channel.controller", function ($sc
 
 });
 
-angular.module("umbraco").controller("YouTube.prevalue.channel.controller", function ($scope, YouTubeResource, notificationsService, angularHelper, serverValidationManager) {
+angular.module("umbraco").controller("YouTube.prevalue.channel.controller", function ($scope, YouTubeResource, angularHelper, serverValidationManager) {
 
 
     //Set to be default empty object or value saved if we have it
@@ -239,29 +239,17 @@ angular.module("umbraco").controller("YouTube.prevalue.channel.controller", func
     if($scope.model.value){
         //Have a value - so lets assume our JSON object is all good
         //Debug message
-        //console.log("Scope Model Value on init", $scope.model.value);
-
-        //As we have JSON value on init
-        //Let's set the textbox to the value of the querried username
-        $scope.username = $scope.model.value.querriedUsername;
+        console.log("Scope Model Value on init", $scope.model.value);
     }
 
 
     $scope.queryChannel = function(username) {
-
-        //Debug info
-        //console.log("Query Channel Click", username);
 
         //Default flag for validity
         var isThisValid = false;
 
         //Query this via our resource
         YouTubeResource.queryUsernameForChannel(username).then(function(response) {
-
-            //Debug info
-            //console.log("Value back from query API", response);
-            //console.log("Items length", response.data.items.length);
-
 
             //Only do this is we have a result back from the API
             if(response.data.items.length > 0){
@@ -272,7 +260,6 @@ angular.module("umbraco").controller("YouTube.prevalue.channel.controller", func
 
                 //Create new JSON object as we don't need full object from Google's API response
                 var newChannelObject = {
-                    "querriedUsername": username,
                     "channelId": channel.id,
                     "title": channel.snippet.title,
                     "description": channel.snippet.description,
@@ -281,17 +268,15 @@ angular.module("umbraco").controller("YouTube.prevalue.channel.controller", func
                 };
 
                 //Set the value to be our new JSON object
-                $scope.model.value = newChannelObject;
+                $scope.model.value.youtube = newChannelObject;
 
                 //Set our flag to true
                 isThisValid = true;
             }
             else {
-                //Fire a notification - saying user can not be found
-                //notificationsService.error("YouTube User Lookup","The channel/user '" + username + "' could not be found on YouTube");
-
+                
                 //Set the value to be empty
-                $scope.model.value = null;
+                $scope.model.value.youtube = null;
 
                 //Ensure flag is set to false
                 isThisValid = false;
@@ -306,6 +291,7 @@ angular.module("umbraco").controller("YouTube.prevalue.channel.controller", func
             //Set this field to be valid or invalid based on our flag
             form.username.$setValidity('YouTubeChannel', isThisValid);
 
+            
             if(!isThisValid){
                 //Property Alias, Field name (ID/name of text box), Error Message
                 serverValidationManager.addPropertyError($scope.model.alias, "username", "The channel/user '" + username + "' could not be found on YouTube");
