@@ -1,14 +1,14 @@
 <div ng-controller="YouTube.prevalue.channel.controller">
 	
 	<input type="text" name="username" id="username" ng-model="model.value.querriedUsername" placeholder="uHangout" required />
-	<a href="#" ng-click="queryChannel(model.value.querriedUsername)" class="btn" prevent-default>Lookup Channel</a>
+	<button ng-click="queryChannel(model.value.querriedUsername)" class="btn" prevent-default ng-disabled="propertyForm.username.$error.required">Lookup Channel</button>
 
     <div class="alert alert-error" ng-show="propertyForm.username.$error.required">
-            The channel/username is required
+        The channel/username is required
     </div>
 
-    <div class="alert alert-error" ng-show="propertyForm.username.$error.YouTubeChannel">
-            The channel/username '{{ model.value.querriedUsername }}' could not be found
+    <div class="alert alert-error" ng-show="propertyForm.username.$error.notchecked">
+        The channel/username {{ model.value.querriedUsername }} has not been checked
     </div>
 
 	<hr/>

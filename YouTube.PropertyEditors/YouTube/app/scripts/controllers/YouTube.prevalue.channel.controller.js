@@ -11,6 +11,7 @@ angular.module("umbraco").controller("YouTube.prevalue.channel.controller", func
     }
 
 
+    //This is run when the button is clicked
     $scope.queryChannel = function(username) {
 
         //Default flag for validity
@@ -28,6 +29,7 @@ angular.module("umbraco").controller("YouTube.prevalue.channel.controller", func
 
                 //Create new JSON object as we don't need full object from Google's API response
                 var newChannelObject = {
+                    "username": username,
                     "channelId": channel.id,
                     "title": channel.snippet.title,
                     "description": channel.snippet.description,
@@ -51,32 +53,80 @@ angular.module("umbraco").controller("YouTube.prevalue.channel.controller", func
             }
 
 
-            //Get the form with Umbraco's helper of this $scope
-            //The form is wrapped just around this single prevalue editor
-            var form = angularHelper.getCurrentForm($scope);
-
-            //Inside the form we have our input field with the name/id of username
-            //Set this field to be valid or invalid based on our flag
-            form.username.$setValidity('YouTubeChannel', isThisValid);
-
-            
-            if(!isThisValid){
-                //Property Alias, Field name (ID/name of text box), Error Message
-                serverValidationManager.addPropertyError($scope.model.alias, "username", "The channel/user '" + username + "' could not be found on YouTube");
-            }
-            else {
-                //Property Alias, Field name (ID/name of text box)
-                serverValidationManager.removePropertyError($scope.model.alias, "username");
-            }
-
-
-            //Debug
-            //console.log("Form", form);
-            //console.log("Form Username", form.username);
-            //console.log("Is this Valid?", isThisValid);
-
+            //Call our isUsernameValid function
+            //With our bool if form is valid or not
+            //Will show or hide valdiation if needed
+            isUsernameValid(isThisValid);
         });
 
     };
+
+    //Watch our $scope.model.value
+    //When data changes - revalidate...
+    $scope.$watch(function() {
+        return $scope.model.value;
+    }, function(newVal, oldVal) {
+
+        console.log("Old Value", oldVal);
+        console.log("New Value", newVal);
+
+        //Call our validation method
+        isThisValid();
+
+    }, true);
+
+    function isThisValid(){
+        console.log("Is this valid?");
+
+        //Always default to is valid & set to false when we know not valid
+        var isValid = true;
+
+        //Check we have a username object
+        //May be that a username was querried that does not exist
+        if($scope.model.value.youtube !== null && $scope.model.value.youtube.username !== null){
+            
+            if($scope.model.value.querriedUsername !== $scope.model.value.youtube.username){
+                //The username in the textbox is not the same as we have saved in YouTube
+                //So means user has typed in a new name but not pressed the query button
+
+                //User has not rechecked new name in textbox
+                isValid = false;
+            }
+        }
+
+        //Run validation to show or remove existing errors
+        hasUserRechecked(isValid);
+
+    }
+
+    function isUsernameValid(isValid) {
+        //Get the form with Umbraco's helper of this $scope
+        //The form is wrapped just around this single prevalue editor
+        var form = angularHelper.getCurrentForm($scope);
+
+        //Inside the form we have our input field with the name/id of username
+        //Set this field to be valid or invalid based on our flag
+        form.username.$setValidity('YouTubeChannel', isValid);
+
+
+        if(!isValid){
+            //Property Alias, Field name (ID/name of text box), Error Message
+            serverValidationManager.addPropertyError($scope.model.alias, "username", "The channel/user could not be found on YouTube");
+        }
+        else {
+            //Property Alias, Field name (ID/name of text box)
+            serverValidationManager.removePropertyError($scope.model.alias, "username");
+        }
+    }
+
+    function hasUserRechecked(isValid) {
+        //Get the form with Umbraco's helper of this $scope
+        //The form is wrapped just around this single prevalue editor
+        var form = angularHelper.getCurrentForm($scope);
+
+        //Inside the form we have our input field with the name/id of username
+        //Set this field to be valid or invalid based on our flag
+        form.username.$setValidity('notchecked', isValid);
+    }
 
 });
