@@ -1,16 +1,16 @@
-YouTube for Umbraco (V7+)
+YouTube for Umbraco (v7+)
 =====
 This is a project for adding YouTube videos to your Umbraco site.
 Currently it only consists of a single property editor that allows you to easily pick videos from a specific YouTube channel.
 
 ## YouTube Channel Picker
-Currently this package consists of the Google .NET C# Library for YouTube API's along with a V7 Angular Property Editor for selecting video/s from a YouTube channel.
+Currently this package consists of the Google .NET C# Library for YouTube API's along with a v7 Angular Property Editor for selecting video/s from a YouTube channel.
 
 ### Installation
 
-Umbraco Package - [http://our.umbraco.org/projects/backoffice-extensions/youtube](http://our.umbraco.org/projects/backoffice-extensions/youtube)
-NuGet - [http://www.nuget.org/packages/YouTube.Umbraco/](http://www.nuget.org/packages/YouTube.Umbraco/)
-MyGet (for latest prerelase build) - [https://www.myget.org/gallery/youtube-umbraco](https://www.myget.org/gallery/youtube-umbraco)
+- Umbraco Package [http://our.umbraco.org/projects/backoffice-extensions/youtube](http://our.umbraco.org/projects/backoffice-extensions/youtube)
+- NuGet [http://www.nuget.org/packages/YouTube.Umbraco/](http://www.nuget.org/packages/YouTube.Umbraco/)
+- MyGet (for latest prerelase build) - [https://www.myget.org/gallery/youtube-umbraco](https://www.myget.org/gallery/youtube-umbraco)
 
 Current AppVeyor build status:
 [![Build status](https://ci.appveyor.com/api/projects/status/ca1w4tu3uib3oltd)](https://ci.appveyor.com/project/warrenbuckley/youtube-umbraco)
