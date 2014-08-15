@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YouTube.Web", "YouTube.Web\YouTube.Web.csproj", "{E9033DE7-18D4-4B09-8E75-B658FD7F19AE}"
 EndProject
@@ -18,11 +18,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build Package", "Build Package", "{022AF774-3FF7-49C3-926F-BC85352F356B}"
 	ProjectSection(SolutionItems) = preProject
+		appveyor.yml = appveyor.yml
 		BuildPackage\Build.bat = BuildPackage\Build.bat
-		BuildPackage\Package.build.cmd = BuildPackage\Package.build.cmd
 		BuildPackage\Package.build.xml = BuildPackage\Package.build.xml
 		BuildPackage\package.nuspec = BuildPackage\package.nuspec
 		BuildPackage\Package.xml = BuildPackage\Package.xml
+		BuildPackage\Test.bat = BuildPackage\Test.bat
 	EndProjectSection
 EndProject
 Global
