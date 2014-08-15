@@ -29,7 +29,7 @@ deploy:
     api_key:
       secure: ouE7tpDB4dawEEQ0ig0uqq2dNEB7J6iDJ7smAPzhlKC/x/p23Txr5MRDqaIQzjYH
     artifact: /.*\.nupkg/
-      on:
+    on:
       branch: release
 
   - provider: S3
