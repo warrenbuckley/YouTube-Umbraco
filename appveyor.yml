@@ -29,14 +29,14 @@ deploy:
     api_key:
       secure: ouE7tpDB4dawEEQ0ig0uqq2dNEB7J6iDJ7smAPzhlKC/x/p23Txr5MRDqaIQzjYH
     artifact: /.*\.nupkg/
-	on:
+      on:
       branch: release
 
   - provider: S3
     access_key_id:
-	  secure: Zh199HrTKaRNia82d4PQWJPHseHptNlRApgijx2ejBQ=
+      secure: Zh199HrTKaRNia82d4PQWJPHseHptNlRApgijx2ejBQ=
     secret_access_key:
-	  secure: izFbvWxeneliuFrxwx4Eo7bSDhV9mHSueuBdOoo7blKIgkkY4HCkN1GQMbSU5Ae6
+      secure: izFbvWxeneliuFrxwx4Eo7bSDhV9mHSueuBdOoo7blKIgkkY4HCkN1GQMbSU5Ae6
     bucket: umbraco-community-packages
     set_public: true
     folder: YouTube
