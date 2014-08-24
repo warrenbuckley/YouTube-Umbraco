@@ -2,11 +2,7 @@ module.exports = function (grunt) {
   require('load-grunt-tasks')(grunt);
   require('time-grunt')(grunt);
   require('grunt-karma')(grunt);
-
-  //cant load this with require
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-cssmin');
-  grunt.loadNpmTasks('grunt-banner');
+  
 
   if (grunt.option('target') && !grunt.file.isDir(grunt.option('target'))) {
     grunt.fail.warn('The --target option specified is not a valid directory');
@@ -64,6 +60,7 @@ module.exports = function (grunt) {
       }
     },
 
+    //Minify the CSS & add the banner to the top
     cssmin: {
         add_banner: {
             options: {
@@ -75,6 +72,7 @@ module.exports = function (grunt) {
         }
     },
 
+    //There is no HTML task, so we explicitly add banner to HTML views
     usebanner: {
         taskName: {
             options: {
@@ -87,6 +85,7 @@ module.exports = function (grunt) {
         }
     },
 
+    //Watch - Useful for deving
     watch: {
       options: {
         atBegin: true
@@ -131,79 +130,11 @@ module.exports = function (grunt) {
         dest: '<%= dest %>/<%= basePath %>/views/'
       },
 
-      nuget: {
-        expand: true,
-        cwd: '<%= dest %>',
-        src: '<%= basePath %>/**',
-        dest: 'tmp/nuget/content/'
-      },      
-
-      umbraco: {
-        expand: true,
-        cwd: '<%= dest %>/',
-        src: '<%= basePath %>/**',
-        dest: 'tmp/umbraco/'
-      },
-
-      umbracoBin: {
-        expand: true,
-        cwd: 'bin/',
-        src: '**',
-        dest: 'tmp/umbraco/bin'
-      },
-
       testAssets: {
         expand: true,
         cwd: '<%= dest %>',
         src: ['js/umbraco.*.js', 'lib/**/*.js'],
         dest: 'test/assets/'
-      }
-    },
-
-    template: {
-      nuspec: {
-        options: {
-          data: {
-            name:        '<%= pkg.name %>',
-            version:     '<%= pkg.version %>',
-            author:      '<%= pkg.author.name %>',
-            description: '<%= pkg.description %>'
-          }
-        },
-        files: {
-          'tmp/nuget/<%= pkg.name %>.nuspec': 'config/package.nuspec'
-        }
-      }
-    },
-
-    mkdir: {
-      pkg: {
-        options: {
-          create: ['pkg/nuget', 'pkg/umbraco']
-        },
-      },
-    },
-
-    nugetpack: {
-      dist: {
-        src: 'tmp/nuget/<%= pkg.name %>.nuspec',
-        dest: 'pkg/nuget/'
-      }
-    },
-
-    umbracoPackage: {
-      options: {
-        name:        '<%= pkg.name %>',
-        version:     '<%= pkg.version %>',
-        url:         '<%= pkg.url %>',
-        license:     '<%= pkg.license %>',
-        licenseUrl:  '<%= pkg.licenseUrl %>',
-        author:      '<%= pkg.author %>',
-        authorUrl:   '<%= pkg.authorUrl %>',
-        manifest:    'config/package.xml',
-        readme:      'config/readme.txt',
-        sourceDir:   'tmp/umbraco',
-        outputDir:   'pkg/umbraco',
       }
     },
 
@@ -248,10 +179,6 @@ module.exports = function (grunt) {
   //Main Grunt Task
   grunt.registerTask('default', ['jshint', 'concat', 'less', 'cssmin', 'copy:config', 'copy:views', 'usebanner']);
 
-  //Need to check with Jeavon as these are probably no longer needed due to MSBuild/AppVeyor building these
-  grunt.registerTask('nuget', ['clean', 'default', 'copy:nuget', 'template:nuspec', 'mkdir:pkg', 'nugetpack']);
-  grunt.registerTask('package', ['clean', 'default', 'copy:umbraco', 'copy:umbracoBin','mkdir:pkg', 'umbracoPackage']);
-  
   //Test Task
   grunt.registerTask('test', 'Clean, copy test assets, test', function () {
     var assetsDir = grunt.config.get('dest');
