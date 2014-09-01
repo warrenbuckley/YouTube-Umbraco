@@ -4,6 +4,8 @@ using Google.Apis.YouTube.v3.Data;
 
 namespace YouTube
 {
+    using System.Linq;
+
     public class YouTubeHelper
     {
         //CONSTANTS
@@ -67,14 +69,14 @@ namespace YouTube
         /// https://www.googleapis.com/youtube/v3/videos?part=snippet%2Cstatistics&id=gRyPjRrjS34&key=AIzaSyAgXB3nYk3f00eXZd0FGsUjJySf2Fnp7KA
         public static VideoListResponse GetVideo(string videoId)
         {
-            //Get YouTube Service
+            // Get YouTube Service
             var youTube = GetYouTubeService();
 
-            //TODO: Inspect request properly & see what we actually need or not
+            // TODO: Inspect request properly & see what we actually need or not
             var videoRequest    = youTube.Videos.List("snippet, contentDetails, liveStreamingDetails, player, recordingDetails, statistics, status");
             videoRequest.Id     = videoId;
 
-            //Perform request
+            // Perform request
             var videoResponse = videoRequest.Execute();
 
             return videoResponse;
@@ -84,13 +86,27 @@ namespace YouTube
         public static ChannelListResponse GetChannelFromUsername(string usernameToQuery)
         {
             var youTube = GetYouTubeService();
-
-            var channelQueryRequest         = youTube.Channels.List("snippet,id,contentDetails,statistics,topicDetails");
+            var channelQueryRequest = youTube.Channels.List("snippet,id,contentDetails,statistics,topicDetails");
             channelQueryRequest.ForUsername = usernameToQuery;
-            channelQueryRequest.MaxResults  = 1;
+            channelQueryRequest.MaxResults = 1;
 
-            //Perform request
+            // Perform request
             var channelResponse = channelQueryRequest.Execute();
+
+            // If no items found in channel query attempt a search and find the channel id of the first item
+            if (!channelResponse.Items.Any())
+            {
+                var searchRequest = youTube.Search.List("snippet");
+                searchRequest.Q = usernameToQuery;
+                searchRequest.MaxResults = 1;
+                searchRequest.Type = "channel";
+                var searchResponse = searchRequest.Execute();
+                if (searchResponse.Items.Any())
+                {
+                    var channelId = searchResponse.Items.First().Snippet.ChannelId;
+                    channelResponse = GetChannelFromId(channelId);
+                }
+            }
 
             return channelResponse;
         }
@@ -103,7 +119,7 @@ namespace YouTube
             channelQueryRequest.Id          = channelId;
             channelQueryRequest.MaxResults  = 1;
 
-            //Perform request
+            // Perform request
             var channelResponse = channelQueryRequest.Execute();
 
             return channelResponse;
