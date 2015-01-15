@@ -2,7 +2,7 @@
 <umbPackage>
 	<info>
 		<package>
-			<name>YouTube for Umbraco</name>
+			<name></name>
 			<version>0.0.0</version>
       <license url="http://opensource.org/licenses/MIT">MIT License</license>
 			<url>https://github.com/warrenbuckley/YouTube-Umbraco</url>
@@ -17,9 +17,7 @@
       <website>http://creativewebspecialist.co.uk</website>
 		</author>
 		<readme>
-      <![CDATA[A YouTube video picker for Umbraco.
-
-      Many Thanks to Jeavon for the Property Value Convertor from the basic JSON we save to the more useful & strongly typed Video object, along with the PackageAction to add the assembly binding to the Web.Config]]>
+      <![CDATA[]]>
     </readme>
 	</info>
 
