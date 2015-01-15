@@ -30,7 +30,7 @@
 	<DataTypes />
 
   <Actions>
-    <Action runat="install" undo="true" alias="YouTube.AddAssemblyBinding" name="System.Net.Http.Primitives" publicKeyToken="b03f5f7f11d50a3a" oldVersion="0.0.0.0-4.0.10.0" newVersion="4.0.10.0" />
+    <Action runat="install" undo="true" alias="YouTube.AddAssemblyBinding" name="System.Net.Http.Primitives" publicKeyToken="b03f5f7f11d50a3a" oldVersion="0.0.0.0-4.2.28.0" newVersion="4.2.28.0" />
   </Actions>
   
 	<control />
