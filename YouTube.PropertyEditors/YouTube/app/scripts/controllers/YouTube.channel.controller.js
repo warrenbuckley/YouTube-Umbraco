@@ -53,14 +53,14 @@ angular.module("umbraco").controller("YouTube.channel.controller", function ($sc
         };
 
         //See if we can find the item or not in the array
-        var tryFindItem = $scope.model.value.map(function (e) { return e.id; }).indexOf(newVideoObject.id);
+        var tryFindItem = $scope.isInArray(newVideoObject.id);
 
         //Check validity of min & max items
         var minValid = isMinValid();
         var maxValid = isMaxValid();
 
         //Check to add or remove item
-        if (tryFindItem !== -1) {
+        if (tryFindItem) {
             
             //Found the item in the array
 
@@ -122,6 +122,10 @@ angular.module("umbraco").controller("YouTube.channel.controller", function ($sc
     };
 
     $scope.isInArray = function (videoId) {
+        if ($scope.model.value == "") {
+            return false;
+        }
+
         //See if we can find the item or not in the array
         var tryFindItem = $scope.model.value.map(function (e) { return e.id; }).indexOf(videoId);
 
