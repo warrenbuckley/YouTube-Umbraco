@@ -33,13 +33,14 @@ namespace YouTube
 
             //Create a .NET MVC URL Helper
             var urlHelper = new UrlHelper(new RequestContext(new HttpContextWrapper(HttpContext.Current), new RouteData()));
-            
-            //Add to dictionary (uTube)
-            e.Add("YouTube", new Dictionary<string, object>
-            {
-                //Then child item of uTube - Add Base Url to controller - minus the method name
-                {"ApiUrl", urlHelper.GetUmbracoApiServiceBaseUrl<YouTubeApiController>(controller => controller.VideosForChannel(null))},
-            });
+
+            //Add to dictionary (YouTube)
+            if (!e.ContainsKey("YouTube"))
+                e.Add("YouTube", new Dictionary<string, object>
+                {
+                    //Then child item of uTube - Add Base Url to controller - minus the method name
+                    {"ApiUrl", urlHelper.GetUmbracoApiServiceBaseUrl<YouTubeApiController>(controller => controller.VideosForChannel(null))},
+                });
         }
 
     }
