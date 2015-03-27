@@ -1,6 +1,9 @@
 # version format
 version: 1.0.2.{build}
 
+# Do not build on tags
+skip_tags: true
+
 # UMBRACO_PACKAGE_PRERELEASE_SUFFIX will only be used for Release builds (alpha, beta, etc)
 # example UMBRACO_PACKAGE_PRERELEASE_SUFFIX=beta
 init:
