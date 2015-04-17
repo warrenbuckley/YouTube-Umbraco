@@ -22,7 +22,7 @@
   </PropertyGroup>
 
   <PropertyGroup >
-    <MinUmbracoVersion>$(UMBRACO_PACKAGE_MIN_VERSION)</MinUmbracoVersion>
+    <MinUmbracoVersion>7.1.4</MinUmbracoVersion>
     <FileVersion>$(APPVEYOR_BUILD_VERSION)</FileVersion>
   </PropertyGroup>
 
