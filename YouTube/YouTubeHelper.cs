@@ -1,4 +1,5 @@
-﻿using Google.Apis.Services;
+﻿using System.Web.Configuration;
+using Google.Apis.Services;
 using Google.Apis.YouTube.v3;
 using Google.Apis.YouTube.v3.Data;
 
@@ -19,11 +20,9 @@ namespace YouTube
         /// <returns></returns>
         public static YouTubeService GetYouTubeService()
         {
-
-
             var youTubeService = new YouTubeService(new BaseClientService.Initializer()
-            {
-                ApiKey          = _ApiKey,
+            { 
+                ApiKey          = WebConfigurationManager.AppSettings["YouTube-Umbraco:ApiKey"] ?? _ApiKey,
                 ApplicationName = _ApplicationName
             });
 
