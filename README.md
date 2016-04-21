@@ -15,6 +15,16 @@ Currently this package consists of the Google .NET C# Library for YouTube API's 
 Current AppVeyor build status:
 [![Build status](https://ci.appveyor.com/api/projects/status/ca1w4tu3uib3oltd)](https://ci.appveyor.com/project/warrenbuckley/youtube-umbraco)
 
+###Using your own YouTube API key
+1. Follow the instructions at https://developers.google.com/youtube/v3/getting-started
+2. Add the following `appSetting` key to your `web.config` file:
+
+```
+<appSettings>
+  <add key="YouTube-Video:ApiKey" value="<APIKEY>" />
+</appSettings>
+```
+
 ### Settings (Prevalues)
 The YouTube Channel picker has two settings or prevalues as it's more commonly known:
 

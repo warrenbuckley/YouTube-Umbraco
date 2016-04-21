@@ -1,5 +1,5 @@
 # version format
-version: 1.0.3.{build}
+version: 1.0.4.{build}
 
 # Do not build on tags
 skip_tags: true
@@ -39,13 +39,3 @@ deploy:
     artifact: /.*\.nupkg/
     on:
       branch: release
-
-  - provider: S3
-    access_key_id:
-      secure: Zh199HrTKaRNia82d4PQWJPHseHptNlRApgijx2ejBQ=
-    secret_access_key:
-      secure: izFbvWxeneliuFrxwx4Eo7bSDhV9mHSueuBdOoo7blKIgkkY4HCkN1GQMbSU5Ae6
-    bucket: umbraco-community-packages
-    set_public: true
-    folder: YouTube
-    artifact: /.*\.zip/
