@@ -34,7 +34,7 @@ namespace YouTube.Extensions
             var enableJsApiString       = enableJsApi ? "1" : "0";
             var loopString              = loop ? "1" : "0";
             // if loop set to true and there is no playlist provided then loop the singular video 
-            var playlistId              = loop && string.IsNullOrWhiteSpace(playlistId) ? videoItem.Id : playlistId; 
+            var playlist                = loop && string.IsNullOrWhiteSpace(playlistId) ? videoItem.Id : playlistId; 
             var modestBrandingString    = modestBranding ? "1" : "0";
             var relString               = rel ? "1" : "0";
             var showInfoString          = showInfo ? "1" : "0";
@@ -43,7 +43,7 @@ namespace YouTube.Extensions
             var uniqueHtmlId            = string.Format("youtubevideo-{0}", videoItem.Id);
 
             var embedHtml = string.Format("<iframe id='{0}' type='text/html' width='{1}' height='{2}' src='https://www.youtube.com/embed/{3}?autoplay={4}&controls={5}&enablejsapi={6}&loop={7}&modestbranding={8}&rel={9}&showinfo={10}&theme={11}&playlist={12}' frameborder='0' allowfullscreen></iframe>",
-                uniqueHtmlId, width, height, videoItem.Id, autoPlayString, showControlsString, enableJsApiString, loopString, modestBrandingString, relString, showInfoString, theme, playlistId);
+                uniqueHtmlId, width, height, videoItem.Id, autoPlayString, showControlsString, enableJsApiString, loopString, modestBrandingString, relString, showInfoString, theme, playlist);
 
             return embedHtml;
         }
