@@ -18,8 +18,9 @@ namespace YouTube.Extensions
         /// <param name="rel">A boolean to enable related videos to be displaed at the end of the video playing. Default is true</param>
         /// <param name="showInfo">A boolean to display the video title & rating before the video plays. Default is true</param>
         /// <param name="theme">An enum of styles that change the control styles</param>
+        /// <param name="playlistId">The playlist id in which you would like to play</param>
         /// <returns>A raw string with the iframe embed HTML with the appeneded options</returns>
-        public static string EmbedVideoWithOptions(this Video videoItem, int width = 640, bool autoPlay = false, bool showControls = true, bool enableJsApi = false, bool loop = false, bool modestBranding = false, bool rel = true, bool showInfo = true, Theme theme = Theme.dark)
+        public static string EmbedVideoWithOptions(this Video videoItem, int width = 640, bool autoPlay = false, bool showControls = true, bool enableJsApi = false, bool loop = false, bool modestBranding = false, bool rel = true, bool showInfo = true, Theme theme = Theme.dark, string playlistId = "")
         {
             // From width calculate height (16:9 ratio)
             // 640 width = 340 height
@@ -32,6 +33,8 @@ namespace YouTube.Extensions
             var showControlsString      = showControls ? "1" : "0";
             var enableJsApiString       = enableJsApi ? "1" : "0";
             var loopString              = loop ? "1" : "0";
+            // if loop set to true and there is no playlist provided then loop the singular video 
+            var playlist                = loop && string.IsNullOrWhiteSpace(playlistId) ? videoItem.Id : playlistId; 
             var modestBrandingString    = modestBranding ? "1" : "0";
             var relString               = rel ? "1" : "0";
             var showInfoString          = showInfo ? "1" : "0";
@@ -39,8 +42,8 @@ namespace YouTube.Extensions
             //If we use JS API ensure the ID for the iframe is unique
             var uniqueHtmlId            = string.Format("youtubevideo-{0}", videoItem.Id);
 
-            var embedHtml = string.Format("<iframe id='{0}' type='text/html' width='{1}' height='{2}' src='https://www.youtube.com/embed/{3}?autoplay={4}&controls={5}&enablejsapi={6}&loop={7}&modestbranding={8}&rel={9}&showinfo={10}&theme={11}' frameborder='0' allowfullscreen></iframe>",
-                uniqueHtmlId, width, height, videoItem.Id, autoPlayString, showControlsString, enableJsApiString, loopString, modestBrandingString, relString, showInfoString, theme);
+            var embedHtml = string.Format("<iframe id='{0}' type='text/html' width='{1}' height='{2}' src='https://www.youtube.com/embed/{3}?autoplay={4}&controls={5}&enablejsapi={6}&loop={7}&modestbranding={8}&rel={9}&showinfo={10}&theme={11}&playlist={12}' frameborder='0' allowfullscreen></iframe>",
+                uniqueHtmlId, width, height, videoItem.Id, autoPlayString, showControlsString, enableJsApiString, loopString, modestBrandingString, relString, showInfoString, theme, playlist);
 
             return embedHtml;
         }
