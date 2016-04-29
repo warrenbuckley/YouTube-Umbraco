@@ -21,7 +21,7 @@ Current AppVeyor build status:
 
 ```
 <appSettings>
-  <add key="YouTube-Video:ApiKey" value="<APIKEY>" />
+  <add key="YouTube-Umbraco:ApiKey" value="<APIKEY>" />
 </appSettings>
 ```
 
