@@ -19,9 +19,9 @@ namespace YouTube.Models
         /// <param name="selectedVideos">
         /// The selected videos.
         /// </param>
-        public SimpleYouTube(List<SelectedVideo> selectedVideos)
+        public SimpleYouTube(IEnumerable<SelectedVideo> selectedVideos)
         {
-            _selectedVideos = selectedVideos.ToList() ?? new List<SelectedVideo>();
+            _selectedVideos = selectedVideos ?? new List<SelectedVideo>();
         }
 
         /// <summary>

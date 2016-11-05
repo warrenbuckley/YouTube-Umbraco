@@ -72,8 +72,8 @@ namespace YouTube
         /// </returns>
         public object ConvertSourceToObject(PublishedPropertyType propertyType, object source, bool preview)
         {
-            var selectedVideos = (List<SelectedVideo>)source;
-            return UmbracoContext.Current != null ? new global::YouTube.Models.SimpleYouTube(selectedVideos) : null;
+            var selectedVideos = new SimpleYouTube(source as List<SelectedVideo>);
+            return selectedVideos;
         }
 
         /// <summary>
@@ -93,7 +93,7 @@ namespace YouTube
         /// </returns>
         public object ConvertSourceToXPath(PublishedPropertyType propertyType, object source, bool preview)
         {
-            var selectedVideos = (List<SelectedVideo>)source;
+            var selectedVideos = (SimpleYouTube)source;
             var selectedVideoIds = selectedVideos.Select(v => v.Id);
             return string.Join(",", selectedVideoIds);
         }
