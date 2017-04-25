@@ -9,11 +9,11 @@ using YouTube.Models;
 namespace YouTube
 {
     /// <summary>
-    /// The uTube property value converter.
+    /// The List of SelectedVideo property value converter.
     /// </summary>
-    [PropertyValueType(typeof(global::YouTube.Models.YouTube))]
+    [PropertyValueType(typeof(IEnumerable<global::YouTube.Models.SelectedVideo>))]
     [PropertyValueCache(PropertyCacheValue.All, PropertyCacheLevel.Content)]
-    public class YouTubeValueConverter : IPropertyValueConverter
+    public class SelectedVideoListValueConverter : IPropertyValueConverter
     {
         /// <summary>
         /// Checks if this converter can convert the property editor and registers if it can.
@@ -49,10 +49,6 @@ namespace YouTube
             if (source != null)
             {
                 var selectedVideoList = JsonConvert.DeserializeObject<List<SelectedVideo>>(source.ToString());
-                if (selectedVideoList != null && selectedVideoList.Any())
-                {
-                    return selectedVideoList.Select(x => x.Id).ToArray();
-                }
             }
 
             return new string[0];
@@ -75,8 +71,7 @@ namespace YouTube
         /// </returns>
         public object ConvertSourceToObject(PublishedPropertyType propertyType, object source, bool preview)
         {
-            var selectedVideos = (string[])source;
-            return UmbracoContext.Current != null ? new global::YouTube.Models.YouTube(selectedVideos) : null;
+            return source;
         }
 
         /// <summary>

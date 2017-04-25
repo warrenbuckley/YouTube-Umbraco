@@ -1,4 +1,5 @@
-﻿using System.Web.Configuration;
+﻿using System;
+using System.Web.Configuration;
 using Google.Apis.Services;
 using Google.Apis.YouTube.v3;
 using Google.Apis.YouTube.v3.Data;
@@ -72,7 +73,8 @@ namespace YouTube
             var youTube = GetYouTubeService();
 
             // TODO: Inspect request properly & see what we actually need or not
-            var videoRequest    = youTube.Videos.List("snippet, contentDetails, liveStreamingDetails, player, recordingDetails, statistics, status");
+//            var videoRequest    = youTube.Videos.List("snippet, contentDetails, liveStreamingDetails, player, recordingDetails, statistics, status");
+            var videoRequest    = youTube.Videos.List(String.Empty);
             videoRequest.Id     = videoId;
 
             // Perform request
