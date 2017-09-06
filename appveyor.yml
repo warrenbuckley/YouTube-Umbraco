@@ -11,7 +11,7 @@ init:
   - ps: Update-NodeJsInstallation 0.12.17 x64
 
 install:
-  - cmd: npm -g install npm@latest
+  - cmd: npm -g install npm@4.0.2
   - cmd: set PATH=%APPDATA%\npm;%PATH%
   - cmd: node --version
   - cmd: npm --version
