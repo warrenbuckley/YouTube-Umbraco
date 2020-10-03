@@ -6,7 +6,7 @@ Currently it only consists of a single property editor that allows you to easily
 ## YouTube Channel Picker
 Currently this package consists of the Google .NET C# Library for YouTube API's along with a v7 Angular Property Editor for selecting video/s from a YouTube channel.
 
-### Installation
+### INSTALL PROCESS
 
 - Umbraco Package [http://our.umbraco.org/projects/backoffice-extensions/youtube](http://our.umbraco.org/projects/backoffice-extensions/youtube)
 - NuGet [http://www.nuget.org/packages/YouTube.Umbraco/](http://www.nuget.org/packages/YouTube.Umbraco/)
