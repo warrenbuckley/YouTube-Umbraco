@@ -8,10 +8,10 @@ ExamineIndexes/
 # Ignore Umbraco content cache file
 umbraco.config
 packages/
-uTube.Web/bin/
-uTube.Web/obj/
-uTube/obj/
-uTube/bin/
+YouTube.Web/bin/
+YouTube.Web/obj/
+YouTube/obj/
+YouTube/bin/
 
 YouTube.Web/bin/
 YouTube.Web/obj/
@@ -24,3 +24,9 @@ BuildPackage/Package/*
 *.suo
 *.user
 *.sln.docstates
+
+*.sdf
+
+NuGetBackup
+.vs
+*.sdf
