@@ -73,8 +73,8 @@ namespace YouTube
             var youTube = GetYouTubeService();
 
             // TODO: Inspect request properly & see what we actually need or not
-//            var videoRequest    = youTube.Videos.List("snippet, contentDetails, liveStreamingDetails, player, recordingDetails, statistics, status");
-            var videoRequest    = youTube.Videos.List(String.Empty);
+            var videoRequest    = youTube.Videos.List("snippet, contentDetails, liveStreamingDetails, player, recordingDetails, statistics, status");
+            //var videoRequest    = youTube.Videos.List(String.Empty);
             videoRequest.Id     = videoId;
 
             // Perform request
